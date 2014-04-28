@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:minWidth="250dp"
+        android:orientation="vertical"
+        android:padding="@dimen/item_spacing" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/item_spacing"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/type"
+                android:textColor="@android:color/black" />
+
+            <Spinner
+                android:id="@+id/type_spinner1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/item_spacing"
+                android:layout_marginRight="@dimen/item_spacing"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawSelectorOnTop="true"
+                android:popupBackground="@android:color/white" />
+
+            <Spinner
+                android:id="@+id/type_spinner2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/item_spacing"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawSelectorOnTop="true"
+                android:popupBackground="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/item_spacing"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/generation"
+                android:textColor="@android:color/black" />
+
+            <Spinner
+                android:id="@+id/generation_spinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/item_spacing"
+                android:layout_marginRight="@dimen/item_spacing"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawSelectorOnTop="true"
+                android:popupBackground="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/item_spacing"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/mega_evolution"
+                android:textColor="@android:color/black" />
+
+            <ToggleButton
+                android:id="@+id/mega_check"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/item_spacing"
+                android:layout_marginRight="@dimen/item_spacing"
+                android:layout_weight="1"
+                android:textOff="@android:string/no"
+                android:textOn="@android:string/yes" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_action" />
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="be.florien.teambuilder"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
+
+    <application
+        android:name="be.florien.teambuilder.application.PokedexApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ico_app"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="be.florien.teambuilder.activity.TopActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="be.florien.teambuilder.activity.PokemonSpecieDetailActivity"
+            android:parentActivityName="be.florien.teambuilder.activity.TopActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.florien.teambuilder.activity.TopActivity" />
+        </activity>
+        <activity
+            android:name="be.florien.teambuilder.activity.MoveDetailActivity"
+            android:parentActivityName="be.florien.teambuilder.activity.TopActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.florien.teambuilder.activity.TopActivity" />
+        </activity>
+        <activity
+            android:name="be.florien.teambuilder.activity.TypeDetailActivity"
+            android:parentActivityName="be.florien.teambuilder.activity.TopActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.florien.teambuilder.activity.TopActivity" />
+        </activity>
+        <activity
+            android:name="be.florien.teambuilder.activity.PokemonSpecieListForMoveActivity"
+            android:parentActivityName="be.florien.teambuilder.activity.MoveDetailActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.florien.teambuilder.activity.MoveDetailActivity" />
+        </activity>
+        <activity
+            android:name="be.florien.teambuilder.activity.MoveListForPokemonSpecieActivity"
+            android:parentActivityName="be.florien.teambuilder.activity.PokemonSpecieDetailActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.florien.teambuilder.activity.PokemonSpecieDetailActivity" />
+        </activity>
+        <activity
+            android:name="be.florien.teambuilder.activity.PreferenceActivity"
+            android:parentActivityName="be.florien.teambuilder.activity.TopActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.florien.teambuilder.activity.TopActivity" />
+        </activity>
+    </application>
+
+</manifest>

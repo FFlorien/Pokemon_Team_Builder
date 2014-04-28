@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:minWidth="250dp"
+    android:orientation="vertical"
+    android:padding="@dimen/item_spacing" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size"
+        android:layout_margin="@dimen/item_spacing"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/item_spacing"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/type"
+            android:textColor="@android:color/black" />
+
+        <Spinner
+            android:id="@+id/type_spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawSelectorOnTop="true"
+            android:popupBackground="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size"
+        android:layout_margin="@dimen/item_spacing"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/item_spacing"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/damage_class"
+            android:textColor="@android:color/black" />
+
+        <Spinner
+            android:id="@+id/damage_class_spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawSelectorOnTop="true"
+            android:popupBackground="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size"
+        android:layout_margin="@dimen/item_spacing"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/item_spacing"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/ailment_inflicted"
+            android:textColor="@android:color/black" />
+
+        <Spinner
+            android:id="@+id/ailment_spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawSelectorOnTop="true"
+            android:popupBackground="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size"
+        android:layout_margin="@dimen/item_spacing"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/item_spacing"
+            android:layout_weight="1"
+            android:id="@+id/pp_text"
+            android:gravity="center_vertical"
+            android:text="@string/minimum_pp"
+            android:textColor="@android:color/black" />
+
+        <SeekBar
+            android:id="@+id/pp_seekbar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_size"
+        android:layout_margin="@dimen/item_spacing"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:id="@+id/power_text"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/item_spacing"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/minimum_power"
+            android:textColor="@android:color/black" />
+
+        <SeekBar
+            android:id="@+id/power_seekbar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+             />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/filter_action" />
+
+</LinearLayout>

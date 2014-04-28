@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <!-- To show as informations: -->
+        <!-- name        type    PP -->
+        <!-- damage class -->
+        <!-- [power] -->
+        <!-- [crit rate] -->
+        <!-- [?healing] -->
+        <!-- accuracy -->
+        <!-- [min/max hits/turns] -->
+        <!-- move_meta_category -->
+        <!-- effect: chance% -->
+        <!-- [ailments: chance%] -->
+        <!-- target        priority -->
+        <!-- flavor -->
+        <!-- flinch chance -->
+        <!-- stat chance -->
+        <!-- flags -->
+        <!-- ?recoil -->
+        <!-- generation -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/type_sticker"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/item_size"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/item_spacing"
+                android:background="@drawable/bg_type"
+                android:gravity="center"
+                android:padding="@dimen/item_spacing"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/type_sticker"
+                android:layout_marginLeft="@dimen/item_spacing"
+                android:textSize="@dimen/text_size_big"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/power"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/name"
+                android:layout_margin="@dimen/item_spacing"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/pp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/item_spacing"
+                android:textSize="@dimen/text_size" />
+
+            <ImageView
+                android:id="@+id/damage_class"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/pp"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/item_spacing"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/damage_class_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/damage_class"
+                android:layout_margin="@dimen/item_spacing"
+                android:layout_toLeftOf="@+id/damage_class"
+                android:textSize="@dimen/text_size" />
+
+            <ImageView
+                android:id="@+id/ailment"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/damage_class"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/item_spacing"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/ailment_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/ailment"
+                android:layout_margin="@dimen/item_spacing"
+                android:layout_toLeftOf="@+id/ailment"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/pokemon_species_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/move_pokemon_specie_list_button" />
+
+        <TextView
+            android:id="@+id/method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/critical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/healing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/hits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/turns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/meta_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/effect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/ailment_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/target"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <FrameLayout
+            android:id="@+id/frame_type_efficacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/flinch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/flavor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/stat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/flag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/recoil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/generation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_spacing"
+            android:textSize="@dimen/text_size" />
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<be.florien.teambuilder.widget.CheckableLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg_selector"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:padding="@dimen/item_spacing"
+    android:clickable="false" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_small" />
+
+        <ImageView
+            android:id="@+id/pokeball_selection"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/forms"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/item_pokemon_specie_row" />
+    </LinearLayout>
+
+</be.florien.teambuilder.widget.CheckableLinearLayout>
