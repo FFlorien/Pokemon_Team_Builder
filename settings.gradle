@@ -1,0 +1,2 @@
+include ':pokemonTeamBuilder', ':joinOrm'
+project(':joinOrm').projectDir = new File('joinOrm')

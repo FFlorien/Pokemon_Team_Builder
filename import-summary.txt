@@ -1,0 +1,182 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From JoinOrm:
+* .git
+* .gitignore
+* annotation\
+* annotation\.gitignore
+* annotation\annotation.iml
+* annotation\build.gradle
+* annotation\build\
+* annotation\build\classes\
+* annotation\build\classes\main\
+* annotation\build\classes\main\be\
+* annotation\build\classes\main\be\florien\
+* annotation\build\classes\main\be\florien\joinorm\
+* annotation\build\classes\main\be\florien\joinorm\annotation\
+* annotation\build\classes\main\be\florien\joinorm\annotation\JoId.class
+* annotation\build\classes\main\be\florien\joinorm\annotation\JoTable.class
+* annotation\build\libs\
+* annotation\build\libs\annotation.jar
+* annotation\build\tmp\
+* annotation\build\tmp\jar\
+* annotation\build\tmp\jar\MANIFEST.MF
+* annotation\src\
+* annotation\src\main\
+* annotation\src\main\java\
+* annotation\src\main\java\be\
+* annotation\src\main\java\be\florien\
+* annotation\src\main\java\be\florien\joinorm\
+* annotation\src\main\java\be\florien\joinorm\annotation\
+* annotation\src\main\java\be\florien\joinorm\annotation\JoId.java
+* annotation\src\main\java\be\florien\joinorm\annotation\JoTable.java
+* api\
+* api\api.iml
+* api\build.gradle
+* api\build\
+* api\build\classes\
+* api\build\classes\main\
+* api\build\classes\main\be\
+* api\build\classes\main\be\florien\
+* api\build\classes\main\be\florien\joinorm\
+* api\build\classes\main\be\florien\joinorm\architecture\
+* api\build\classes\main\be\florien\joinorm\architecture\DBArchitectureException.class
+* api\build\classes\main\be\florien\joinorm\architecture\DBData.class
+* api\build\classes\main\be\florien\joinorm\architecture\DBDelete.class
+* api\build\classes\main\be\florien\joinorm\architecture\DBPrimitiveField.class
+* api\build\classes\main\be\florien\joinorm\architecture\DBTable.class
+* api\build\classes\main\be\florien\joinorm\architecture\DBWrite.class
+* api\build\classes\main\be\florien\joinorm\architecture\WhereCondition.class
+* api\build\classes\main\be\florien\joinorm\architecture\WhereStatement$1.class
+* api\build\classes\main\be\florien\joinorm\architecture\WhereStatement.class
+* api\build\classes\main\be\florien\joinorm\primitivefield\
+* api\build\classes\main\be\florien\joinorm\primitivefield\BooleanField.class
+* api\build\classes\main\be\florien\joinorm\primitivefield\DoubleField.class
+* api\build\classes\main\be\florien\joinorm\primitivefield\IntField.class
+* api\build\classes\main\be\florien\joinorm\primitivefield\NullField.class
+* api\build\classes\main\be\florien\joinorm\primitivefield\StringField.class
+* api\build\libs\
+* api\build\libs\api.jar
+* api\build\tmp\
+* api\build\tmp\jar\
+* api\build\tmp\jar\MANIFEST.MF
+* api\proguard-rules.pro
+* api\src\
+* api\src\main\
+* api\src\main\AndroidManifest.xml
+* api\src\main\java\
+* api\src\main\java\be\
+* api\src\main\java\be\florien\
+* api\src\main\java\be\florien\joinorm\
+* api\src\main\java\be\florien\joinorm\architecture\
+* api\src\main\java\be\florien\joinorm\architecture\DBArchitectureException.java
+* api\src\main\java\be\florien\joinorm\architecture\DBData.java
+* api\src\main\java\be\florien\joinorm\architecture\DBDelete.java
+* api\src\main\java\be\florien\joinorm\architecture\DBPrimitiveField.java
+* api\src\main\java\be\florien\joinorm\architecture\DBTable.java
+* api\src\main\java\be\florien\joinorm\architecture\DBWrite.java
+* api\src\main\java\be\florien\joinorm\architecture\WhereCondition.java
+* api\src\main\java\be\florien\joinorm\architecture\WhereStatement.java
+* api\src\main\java\be\florien\joinorm\primitivefield\
+* api\src\main\java\be\florien\joinorm\primitivefield\BooleanField.java
+* api\src\main\java\be\florien\joinorm\primitivefield\DoubleField.java
+* api\src\main\java\be\florien\joinorm\primitivefield\IntField.java
+* api\src\main\java\be\florien\joinorm\primitivefield\NullField.java
+* api\src\main\java\be\florien\joinorm\primitivefield\StringField.java
+* build.gradle
+* gradle.properties
+* gradle\
+* gradle\wrapper\
+* gradle\wrapper\gradle-wrapper.jar
+* gradle\wrapper\gradle-wrapper.properties
+* gradlew
+* gradlew.bat
+* processor\
+* processor\build.gradle
+* processor\build\
+* processor\build\classes\
+* processor\build\classes\main\
+* processor\build\classes\main\be\
+* processor\build\classes\main\be\florien\
+* processor\build\classes\main\be\florien\joinorm\
+* processor\build\classes\main\be\florien\joinorm\processor\
+* processor\build\classes\main\be\florien\joinorm\processor\DBTableProcessor$1.class
+* processor\build\classes\main\be\florien\joinorm\processor\DBTableProcessor.class
+* processor\build\libs\
+* processor\build\libs\processor.jar
+* processor\build\resources\
+* processor\build\resources\main\
+* processor\build\resources\main\META-INF\
+* processor\build\resources\main\META-INF\services\
+* processor\build\resources\main\META-INF\services\javax.annotation.processing.Processor
+* processor\build\tmp\
+* processor\build\tmp\jar\
+* processor\build\tmp\jar\MANIFEST.MF
+* processor\processor.iml
+* processor\src\
+* processor\src\main\
+* processor\src\main\java\
+* processor\src\main\java\be\
+* processor\src\main\java\be\florien\
+* processor\src\main\java\be\florien\joinorm\
+* processor\src\main\java\be\florien\joinorm\processor\
+* processor\src\main\java\be\florien\joinorm\processor\DBTableProcessor.java
+* processor\src\main\resources\
+* processor\src\main\resources\META-INF\
+* processor\src\main\resources\META-INF\services\
+* processor\src\main\resources\META-INF\services\javax.annotation.processing.Processor
+* settings.gradle
+From PokemonTeamBuilder:
+* .gitignore
+* .gitignore~
+* README.md
+* proguard-project.txt
+
+Replaced Libraries with Dependencies:
+-------------------------------------
+The importer recognized the following library projects as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the source files in your project were of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the library replacement in the import wizard and try
+again:
+
+appcompat-v7 => [com.android.support:appcompat-v7:19.1.0]
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In JoinOrm:
+* src\ => joinOrm\src\main\java
+In PokemonTeamBuilder:
+* AndroidManifest.xml => pokemonTeamBuilder\src\main\AndroidManifest.xml
+* assets\ => pokemonTeamBuilder\src\main\assets\
+* libs\sqliteassethelper-2.0.1.jar => pokemonTeamBuilder\libs\sqliteassethelper-2.0.1.jar
+* res\ => pokemonTeamBuilder\src\main\res\
+* src\ => pokemonTeamBuilder\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
