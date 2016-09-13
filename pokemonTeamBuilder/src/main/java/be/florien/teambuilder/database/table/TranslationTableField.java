@@ -1,10 +1,10 @@
 
 package be.florien.teambuilder.database.table;
 
-import be.florien.databasecomplexjoins.architecture.DBData;
-import be.florien.databasecomplexjoins.architecture.DBTable;
-import be.florien.databasecomplexjoins.architecture.WhereStatement;
-import be.florien.databasecomplexjoins.primitivefield.IntField;
+import be.florien.joinorm.architecture.DBData;
+import be.florien.joinorm.architecture.DBTable;
+import be.florien.joinorm.architecture.WhereStatement;
+import be.florien.joinorm.primitivefield.IntField;
 import be.florien.teambuilder.appconfiguration.Constant;
 import be.florien.teambuilder.model.DualStringTranslation;
 

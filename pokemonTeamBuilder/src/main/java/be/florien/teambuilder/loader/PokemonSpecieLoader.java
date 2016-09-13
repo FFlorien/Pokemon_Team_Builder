@@ -3,7 +3,7 @@ package be.florien.teambuilder.loader;
 
 import android.content.Context;
 
-import be.florien.databasecomplexjoins.architecture.WhereStatement;
+import be.florien.joinorm.architecture.WhereStatement;
 import be.florien.teambuilder.database.helper.DBTableQueryHelper;
 import be.florien.teambuilder.database.table.PokemonFormTable;
 import be.florien.teambuilder.database.table.PokemonSpecieTable;

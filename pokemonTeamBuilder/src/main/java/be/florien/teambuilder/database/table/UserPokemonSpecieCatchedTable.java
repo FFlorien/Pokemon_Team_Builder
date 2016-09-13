@@ -1,7 +1,7 @@
 
 package be.florien.teambuilder.database.table;
 
-import be.florien.databasecomplexjoins.architecture.DBTable;
+import be.florien.joinorm.architecture.DBTable;
 import be.florien.teambuilder.model.UserPokemonSpecieCatched;
 
 public class UserPokemonSpecieCatchedTable extends DBTable<UserPokemonSpecieCatched> {

@@ -15,8 +15,8 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 
-import be.florien.databasecomplexjoins.architecture.WhereCondition;
-import be.florien.databasecomplexjoins.architecture.WhereStatement;
+import be.florien.joinorm.architecture.WhereCondition;
+import be.florien.joinorm.architecture.WhereStatement;
 import be.florien.teambuilder.R;
 import be.florien.teambuilder.adapter.GenerationAdapter;
 import be.florien.teambuilder.adapter.TypeAdapter;

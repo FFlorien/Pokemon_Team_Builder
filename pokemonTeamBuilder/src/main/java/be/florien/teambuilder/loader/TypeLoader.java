@@ -5,7 +5,7 @@ import android.content.Context;
 
 import java.util.List;
 
-import be.florien.databasecomplexjoins.architecture.WhereStatement;
+import be.florien.joinorm.architecture.WhereStatement;
 import be.florien.teambuilder.database.helper.DBTableQueryHelper;
 import be.florien.teambuilder.database.table.TypeEfficacityAsAttackTable;
 import be.florien.teambuilder.database.table.TypeEfficacityAsDefenseTable;

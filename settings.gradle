@@ -1,2 +1,4 @@
-include ':pokemonTeamBuilder', ':joinOrm'
-project(':joinOrm').projectDir = new File('joinOrm')
+include ':pokemonTeamBuilder', ':annotation', ':processor', ':api'
+project(':api').projectDir = new File('JoinOrm/api')
+project(':annotation').projectDir = new File('JoinOrm/annotation')
+project(':processor').projectDir = new File('JoinOrm/processor')

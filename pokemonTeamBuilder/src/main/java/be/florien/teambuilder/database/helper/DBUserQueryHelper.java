@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
-import be.florien.databasecomplexjoins.architecture.DBDelete;
-import be.florien.databasecomplexjoins.architecture.DBTable;
-import be.florien.databasecomplexjoins.architecture.DBWrite;
+import be.florien.joinorm.architecture.DBDelete;
+import be.florien.joinorm.architecture.DBTable;
+import be.florien.joinorm.architecture.DBWrite;
 
 import java.util.ArrayList;
 import java.util.List;

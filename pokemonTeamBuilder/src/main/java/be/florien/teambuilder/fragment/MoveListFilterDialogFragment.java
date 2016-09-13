@@ -17,8 +17,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import be.florien.databasecomplexjoins.architecture.WhereCondition;
-import be.florien.databasecomplexjoins.architecture.WhereStatement;
+import be.florien.joinorm.architecture.WhereCondition;
+import be.florien.joinorm.architecture.WhereStatement;
 import be.florien.teambuilder.R;
 import be.florien.teambuilder.adapter.MoveDamageClassAdapter;
 import be.florien.teambuilder.adapter.MoveMetaAilmentAdapter;
