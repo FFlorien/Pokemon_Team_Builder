@@ -4,13 +4,20 @@ package be.florien.teambuilder.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoTable;
+
+@JoTable(isGeneratingWrite = false)
 public class DualStringTranslation implements Parcelable {
 
+    @JoId
     public int id;
 
     public String first;
     public String second;
-    
+
+    @JoIgnore
     public static Parcelable.Creator<DualStringTranslation> CREATOR = new Creator<DualStringTranslation>() {
         
         @Override

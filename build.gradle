@@ -5,6 +5,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.0-rc1'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
@@ -13,3 +14,8 @@ allprojects {
         jcenter()
     }
 }
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
