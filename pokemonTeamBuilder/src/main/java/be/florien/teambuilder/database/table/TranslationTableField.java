@@ -17,6 +17,14 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
     
     //TODO add fairy translation...
 
+    public static final String TABLE_LANGUAGE_NAME = "generation_names";
+    private static final String COLUMN_LANGUAGE_ID = "generation_id";
+    private static final String COLUMN_LANGUAGE_NAME = "name";
+
+    public static TranslationTableField forGeneration() {
+        return new TranslationTableField(TABLE_LANGUAGE_NAME, COLUMN_LANGUAGE_ID, COLUMN_LANGUAGE_NAME);
+    }
+
     public TranslationTableField(String tableName, String fieldIdName, String translationFieldName) {
         super(tableName, DualStringTranslation.class);
         mDataName = tableName;
