@@ -4,7 +4,7 @@ package be.florien.teambuilder.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import be.florien.joinorm.annotation.JoField;
+import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoId;
 import be.florien.joinorm.annotation.JoIgnore;
 import be.florien.joinorm.annotation.JoTable;
@@ -13,12 +13,13 @@ import be.florien.teambuilder.database.table.TranslationTableField;
 @JoTable(isGeneratingWrite = false, tableName = "generations")
 public class Generation implements Parcelable {
 
+
+
     @JoId
     public int id;
     public String identifier;
-    @JoField(getTableClass = TranslationTableField.class)
+    @JoJoin(getTableClass = TranslationTableField.class)
     public DualStringTranslation generation_names;
-
 
     @JoIgnore
     public static Parcelable.Creator<Generation> CREATOR = new Creator<Generation>() {

@@ -1,6 +1,7 @@
 
 package be.florien.teambuilder.database.table;
 
+import be.florien.joinorm.annotation.JoCustomJoin;
 import be.florien.joinorm.architecture.DBData;
 import be.florien.joinorm.architecture.DBTable;
 import be.florien.joinorm.architecture.WhereStatement;
@@ -10,6 +11,7 @@ import be.florien.teambuilder.model.DualStringTranslation;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,27 +52,28 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
 
     private static final HashMap<String, List<Integer>> mCompleteTranslations;
     static {
-        mCompleteTranslations = new HashMap<String, List<Integer>>();
+        mCompleteTranslations = new HashMap<>();
         mCompleteTranslations.put(MoveDamageClassTable.TABLE_PROSE_NAME, Arrays.asList(1, 9, 10));
-        mCompleteTranslations.put(MoveEffectTable.TABLE_PROSE_NAME, Arrays.asList(9));
-        mCompleteTranslations.put(MoveMetaAilmentTable.TABLE_NAME_NAME, Arrays.asList(9));
+        mCompleteTranslations.put(MoveEffectTable.TABLE_PROSE_NAME, Collections.singletonList(9));
+        mCompleteTranslations.put(MoveMetaAilmentTable.TABLE_NAME_NAME, Collections.singletonList(9));
         mCompleteTranslations.put(MoveTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 9));
         mCompleteTranslations.put(PokemonFormTable.TABLE_LANGUAGE_NAME, Arrays.asList(5, 9));
         mCompleteTranslations.put(PokemonSpecieTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 9));
-        mCompleteTranslations.put(TypeTable.TABLE_LANGUAGE_NAME, Arrays.asList(9));
-        mCompleteTranslations.put(ItemTable.TABLE_LANGUAGE_NAME, Arrays.asList(9));
+        mCompleteTranslations.put(TypeTable.TABLE_LANGUAGE_NAME, Collections.singletonList(9));
+        mCompleteTranslations.put(ItemTable.TABLE_LANGUAGE_NAME, Collections.singletonList(9));
     }
     private static final HashMap<String, List<Integer>> mIncompleteTranslations;
     static {
-        mIncompleteTranslations = new HashMap<String, List<Integer>>();
-        mIncompleteTranslations.put(MoveEffectTable.TABLE_PROSE_NAME, Arrays.asList(10));
-        mIncompleteTranslations.put(MoveMetaAilmentTable.TABLE_NAME_NAME, Arrays.asList(10));
+        mIncompleteTranslations = new HashMap<>();
+        mIncompleteTranslations.put(MoveEffectTable.TABLE_PROSE_NAME, Collections.singletonList(10));
+        mIncompleteTranslations.put(MoveMetaAilmentTable.TABLE_NAME_NAME, Collections.singletonList(10));
         mIncompleteTranslations.put(MoveTable.TABLE_LANGUAGE_NAME, Arrays.asList(6, 7, 8, 10));
         mIncompleteTranslations.put(PokemonSpecieTable.TABLE_LANGUAGE_NAME, Arrays.asList(2, 3, 4, 10));
         mIncompleteTranslations.put(TypeTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 7, 8, 10));
         mIncompleteTranslations.put(ItemTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 7, 8, 10));
     }
-    
+
+    @JoCustomJoin(getParams = "getDataName() + \".\" + getId()")
     public String getJoinToTranslatedTable(String idOfTable){
         return "LEFT JOIN " + mTranslationTableName + " ON " + mTranslationTableName + "." + mFieldIdName + " = " + idOfTable;
     }

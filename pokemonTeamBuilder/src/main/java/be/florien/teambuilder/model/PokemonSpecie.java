@@ -7,13 +7,18 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoJoin;
+import be.florien.joinorm.annotation.JoTable;
+import be.florien.teambuilder.database.table.TranslationTableField;
+
+@JoTable(isGeneratingWrite = false, tableName = "pokemon_species")
 public class PokemonSpecie implements Parcelable {
 
+    @JoId
     public int id;
-    public List<Pokemon> pokemon;
     public String identifier;
-    public Generation generation;
-    public PokemonSpecie evolve_from_species_id;
     // public EvolutionChain evolutionChain;
     // public String color;
     // public String shape;
@@ -21,9 +26,16 @@ public class PokemonSpecie implements Parcelable {
     public double gender_rate;
     public double capture_rate;
     public int base_hapiness;
-    public int hatch_counter;
     // public GrowthRate growthRate;
     public int order;
+    public int hatch_counter;
+    @JoIgnore
+    public List<Pokemon> pokemon;
+    @JoIgnore
+    public Generation generation;
+    @JoIgnore
+    public PokemonSpecie evolve_from_species_id;
+    @JoJoin(getTableClass = TranslationTableField.class)
     public DualStringTranslation pokemon_species_names;
 
     public PokemonSpecie() {
@@ -44,6 +56,7 @@ public class PokemonSpecie implements Parcelable {
         pokemon_species_names = in.readParcelable(DualStringTranslation.class.getClassLoader());
     }
 
+    @JoIgnore
     public static Parcelable.Creator<PokemonSpecie> CREATOR = new Creator<PokemonSpecie>() {
 
         @Override

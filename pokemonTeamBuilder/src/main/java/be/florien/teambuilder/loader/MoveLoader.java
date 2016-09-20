@@ -4,8 +4,8 @@ package be.florien.teambuilder.loader;
 import android.content.Context;
 
 import be.florien.joinorm.architecture.WhereStatement;
+import be.florien.joinorm.generated.GenerationTable;
 import be.florien.teambuilder.database.helper.DBTableQueryHelper;
-import be.florien.teambuilder.database.table.GenerationTable;
 import be.florien.teambuilder.database.table.ItemTable;
 import be.florien.teambuilder.database.table.MachineTable;
 import be.florien.teambuilder.database.table.MoveDamageClassTable;
