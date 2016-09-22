@@ -2,7 +2,7 @@
 package be.florien.teambuilder.database.table;
 
 import be.florien.joinorm.architecture.DBTable;
-import be.florien.joinorm.generated.GenerationTable;
+import be.florien.teambuilder.model.table.GenerationTable;
 import be.florien.teambuilder.model.PokemonSpecie;
 
 public class PokemonSpecieTable extends DBTable<PokemonSpecie> {

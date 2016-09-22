@@ -13,8 +13,6 @@ import be.florien.teambuilder.database.table.TranslationTableField;
 @JoTable(isGeneratingWrite = false, tableName = "generations")
 public class Generation implements Parcelable {
 
-
-
     @JoId
     public int id;
     public String identifier;

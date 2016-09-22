@@ -2,7 +2,7 @@ package be.florien.teambuilder.loader;
 
 import android.content.Context;
 
-import be.florien.joinorm.generated.GenerationTable;
+import be.florien.teambuilder.model.table.GenerationTable;
 import be.florien.teambuilder.database.helper.DBTableQueryHelper;
 import be.florien.teambuilder.database.table.TranslationTableField;
 import be.florien.teambuilder.model.Generation;

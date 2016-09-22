@@ -7,24 +7,40 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoJoin;
+import be.florien.joinorm.annotation.JoTable;
+import be.florien.teambuilder.database.table.TranslationTableField;
+
+@JoTable(tableName = "moves", isGeneratingWrite = false)
 public class Move implements Comparable<Move>, Parcelable {
 
+    @JoId
     public int id = -10;
     public String identifier;
+    @JoJoin(isReferenceJoin = true, getTableRef = "generation_id", isLeftJoin = false)
     public Generation generations;
+    @JoIgnore
     public Type types;
     public int power;
     public int pp;
     public int accuracy;
     public int priority;
     // public MoveTarget move_targets;
+    @JoIgnore
     public MoveDamageClass move_damage_classes;
+    @JoIgnore
     public MoveEffect move_effects;
     public int effect_chance;
+    @JoJoin(getTableClass = TranslationTableField.class)
     public DualStringTranslation move_names;
+    @JoIgnore
     public MoveMeta move_meta;
-    public Machine machines;
+    @JoIgnore
     public List<PokemonMoveForMove> pokemon_moves;
+    @JoIgnore
+    public Machine machines;
 
     public Move() {
     }
@@ -84,6 +100,7 @@ public class Move implements Comparable<Move>, Parcelable {
         dest.writeTypedList(pokemon_moves);
     }
 
+    @JoIgnore
     public static final Parcelable.Creator<Move> CREATOR = new Parcelable.Creator<Move>() {
         public Move createFromParcel(Parcel in) {
             return new Move(in);
