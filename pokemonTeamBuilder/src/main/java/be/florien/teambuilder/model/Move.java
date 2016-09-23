@@ -12,6 +12,7 @@ import be.florien.joinorm.annotation.JoIgnore;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 import be.florien.teambuilder.database.table.TranslationTableField;
+import be.florien.teambuilder.model.table.MoveTable;
 
 @JoTable(tableName = "moves", isGeneratingWrite = false)
 public class Move implements Comparable<Move>, Parcelable {
@@ -19,15 +20,15 @@ public class Move implements Comparable<Move>, Parcelable {
     @JoId
     public int id = -10;
     public String identifier;
-    @JoJoin(isReferenceJoin = true, getTableRef = "generation_id", isLeftJoin = false)
+    @JoJoin(isReferenceJoin = true, getTableRef = "generation_id")
     public Generation generations;
-    @JoIgnore
+    @JoJoin(isReferenceJoin = true, getTableRef = "types_id")
     public Type types;
     public int power;
     public int pp;
     public int accuracy;
     public int priority;
-    // public MoveTarget move_targets;
+//    public MoveTarget move_targets;
     @JoIgnore
     public MoveDamageClass move_damage_classes;
     @JoIgnore
@@ -37,7 +38,7 @@ public class Move implements Comparable<Move>, Parcelable {
     public DualStringTranslation move_names;
     @JoIgnore
     public MoveMeta move_meta;
-    @JoIgnore
+    @JoJoin(isLeftJoin = true)
     public List<PokemonMoveForMove> pokemon_moves;
     @JoIgnore
     public Machine machines;
@@ -60,7 +61,7 @@ public class Move implements Comparable<Move>, Parcelable {
         move_names = in.readParcelable(DualStringTranslation.class.getClassLoader());
         move_meta = in.readParcelable(MoveMeta.class.getClassLoader());
         machines = in.readParcelable(Machine.class.getClassLoader());
-        pokemon_moves = new ArrayList<PokemonMoveForMove>();
+        pokemon_moves = new ArrayList<>();
         in.readTypedList(pokemon_moves, PokemonMoveForMove.CREATOR);
     }
 

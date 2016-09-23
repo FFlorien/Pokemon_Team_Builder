@@ -4,8 +4,13 @@ package be.florien.teambuilder.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import be.florien.joinorm.annotation.JoJoin;
+import be.florien.joinorm.annotation.JoTable;
+
+@JoTable(isGeneratingWrite = false)
 public class TypeEfficacyAsDefense implements Parcelable {
 
+    @JoJoin
     public Type typeAttacking;
     public int damage_factor;
     public int damage_type_id;
