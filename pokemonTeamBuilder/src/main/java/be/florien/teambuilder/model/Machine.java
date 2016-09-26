@@ -3,15 +3,24 @@ package be.florien.teambuilder.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoJoin;
+import be.florien.joinorm.annotation.JoTable;
+
+@JoTable(isGeneratingWrite = false)
 public class Machine implements Parcelable {
-    
+
+    @JoId
     public int machine_number;
     public int version_group_id;
     public int item_id;
     public int move_id;
+    @JoJoin(getTableRef = "item_id", isReferenceJoin = true, isLeftJoin = true)
     public Item items;
+    @JoJoin(getTableRef = "move_id", isReferenceJoin = true)
     public Move moves;
-    
+
     public Machine(){
     }
     
@@ -23,7 +32,8 @@ public class Machine implements Parcelable {
         items = in.readParcelable(Item.class.getClassLoader());
         moves = in.readParcelable(Move.class.getClassLoader());
     }
-    
+
+    @JoIgnore
     public static Parcelable.Creator<Machine> CREATOR = new Creator<Machine>() {
         
         @Override

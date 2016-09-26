@@ -25,7 +25,7 @@ import be.florien.teambuilder.adapter.MoveMetaAilmentAdapter;
 import be.florien.teambuilder.adapter.TypeAdapter;
 import be.florien.teambuilder.database.table.MoveMetaTable;
 import be.florien.teambuilder.database.table.MoveTable;
-import be.florien.teambuilder.database.table.TypeTable;
+import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.loader.MoveDamageClassLoader;
 import be.florien.teambuilder.loader.MoveMaxValuesLoader;
 import be.florien.teambuilder.loader.MoveMetaAilmentLoader;
@@ -158,10 +158,10 @@ public class MoveListFilterDialogFragment extends DialogFragment {
             dest.writeInt(ailmentSelection);
         }
 
-        public void setFilter(TypeTable typeTable, MoveMetaTable metaTable, MoveTable table) {
+        public void setFilter(TypeTableTmpForPokemon typeTable, MoveMetaTable metaTable, MoveTable table) {
 
             if (typeId != null && typeId != TypeEnum.ALL.getId()) {
-                typeTable.addWhere(new WhereStatement(TypeTable.COLUMN_TYPE_ID, typeId, WhereCondition.EQUAL));
+                typeTable.addWhere(new WhereStatement(TypeTableTmpForPokemon.COLUMN_TYPE_ID, typeId, WhereCondition.EQUAL));
             }
             if (ailmentId != null && ailmentId != MoveMetaAilmentClassEnum.ALL.getId()) {
                 metaTable.addWhere(new WhereStatement(MoveMetaTable.COLUMN_AILMENT_ID, ailmentId));

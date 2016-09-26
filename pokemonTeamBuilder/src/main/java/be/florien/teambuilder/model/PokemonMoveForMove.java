@@ -5,6 +5,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 
 @JoTable(isGeneratingWrite = false)
@@ -16,8 +18,10 @@ public class PokemonMoveForMove implements Parcelable {
     public int pokemon_move_method_id;
     public int level;
     public int order;
+    @JoJoin(getTableRef = "pokemon_id", isReferenceJoin = true)
     public Pokemon pokemon;
 
+    @JoIgnore
     public static Parcelable.Creator<PokemonMoveForMove> CREATOR = new Creator<PokemonMoveForMove>() {
 
         @Override

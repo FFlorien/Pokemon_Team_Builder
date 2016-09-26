@@ -4,8 +4,8 @@ package be.florien.teambuilder.loader;
 import android.content.Context;
 
 import be.florien.teambuilder.database.helper.DBUserQueryHelper;
-import be.florien.teambuilder.database.table.UserPokemonSpecieCatchedTable;
-import be.florien.teambuilder.model.UserPokemonSpecieCatched;
+import be.florien.teambuilder.database.table.UserPokemonSpecieCaughtTable;
+import be.florien.teambuilder.model.UserPokemonSpecieCaught;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +27,9 @@ public class AddPokemonUserLoader extends AbstractAsyncTaskLoader<Void> {
 
     @Override
     public Void loadInBackground() {
-        DBUserQueryHelper<UserPokemonSpecieCatched> dbHelper = new DBUserQueryHelper<UserPokemonSpecieCatched>(getContext());
+        DBUserQueryHelper<UserPokemonSpecieCaught> dbHelper = new DBUserQueryHelper<UserPokemonSpecieCaught>(getContext());
         for (int pkmn : mPokemonUser) {
-            dbHelper.insert(new UserPokemonSpecieCatchedTable().writeId(pkmn));
+            dbHelper.insert(new UserPokemonSpecieCaughtTable().writeId(pkmn));
         }
         return null;
     }

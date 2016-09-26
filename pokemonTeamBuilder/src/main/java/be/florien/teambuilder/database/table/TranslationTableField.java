@@ -59,7 +59,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         mCompleteTranslations.put(MoveTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 9));
         mCompleteTranslations.put(PokemonFormTable.TABLE_LANGUAGE_NAME, Arrays.asList(5, 9));
         mCompleteTranslations.put(PokemonSpecieTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 9));
-        mCompleteTranslations.put(TypeTable.TABLE_LANGUAGE_NAME, Collections.singletonList(9));
+        mCompleteTranslations.put(TypeTableTmpForPokemon.TABLE_LANGUAGE_NAME, Collections.singletonList(9));
         mCompleteTranslations.put(ItemTable.TABLE_LANGUAGE_NAME, Collections.singletonList(9));
     }
     private static final HashMap<String, List<Integer>> mIncompleteTranslations;
@@ -69,7 +69,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         mIncompleteTranslations.put(MoveMetaAilmentTable.TABLE_NAME_NAME, Collections.singletonList(10));
         mIncompleteTranslations.put(MoveTable.TABLE_LANGUAGE_NAME, Arrays.asList(6, 7, 8, 10));
         mIncompleteTranslations.put(PokemonSpecieTable.TABLE_LANGUAGE_NAME, Arrays.asList(2, 3, 4, 10));
-        mIncompleteTranslations.put(TypeTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 7, 8, 10));
+        mIncompleteTranslations.put(TypeTableTmpForPokemon.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 7, 8, 10));
         mIncompleteTranslations.put(ItemTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 7, 8, 10));
     }
 

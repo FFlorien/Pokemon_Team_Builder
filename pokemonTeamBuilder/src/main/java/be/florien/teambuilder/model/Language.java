@@ -3,13 +3,22 @@ package be.florien.teambuilder.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoJoin;
+import be.florien.joinorm.annotation.JoTable;
+import be.florien.teambuilder.database.table.TranslationTableField;
+
+@JoTable(isGeneratingWrite = false)
 public class Language implements Parcelable {
-    
+
+    @JoId
     public int id;
     public String iso639;
     public String iso3166;
     public String identifier;
     public int order;
+    @JoJoin(getTableClass = TranslationTableField.class)
     public DualStringTranslation language_names;
     
     public Language(){
@@ -23,7 +32,8 @@ public class Language implements Parcelable {
         order = in.readInt();
         language_names = in.readParcelable(DualStringTranslation.class.getClassLoader());
     }
-    
+
+    @JoIgnore
     public static Parcelable.Creator<Language> CREATOR = new Creator<Language>() {
         
         @Override

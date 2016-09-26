@@ -2,30 +2,30 @@
 package be.florien.teambuilder.database.table;
 
 import be.florien.joinorm.architecture.DBTable;
-import be.florien.teambuilder.model.UserPokemonSpecieCatched;
+import be.florien.teambuilder.model.UserPokemonSpecieCaught;
 
-public class UserPokemonSpecieCatchedTable extends DBTable<UserPokemonSpecieCatched> {
+public class UserPokemonSpecieCaughtTable extends DBTable<UserPokemonSpecieCaught> {
 
     public static final String TABLE_NAME = "pokemon_specie_catched";
 
     public static final String COLUMN_ID = "id";
 
-    public UserPokemonSpecieCatchedTable() {
-        super(TABLE_NAME, UserPokemonSpecieCatched.class);
+    public UserPokemonSpecieCaughtTable() {
+        super(TABLE_NAME, UserPokemonSpecieCaught.class);
     }
 
     @Override
-    public UserPokemonSpecieCatchedTable selectId() {
+    public UserPokemonSpecieCaughtTable selectId() {
         selectId(COLUMN_ID);
         return this;
     }
     
-    public UserPokemonSpecieCatchedTable writeId(int id){
+    public UserPokemonSpecieCaughtTable writeId(int id){
         writeInt(COLUMN_ID, id);
         return this;
     }
 
-    public UserPokemonSpecieCatchedTable delete(int id){
+    public UserPokemonSpecieCaughtTable delete(int id){
         deleteId(id);
         return this;
     }

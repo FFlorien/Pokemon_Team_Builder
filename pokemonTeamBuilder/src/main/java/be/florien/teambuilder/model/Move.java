@@ -3,6 +3,7 @@ package be.florien.teambuilder.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,6 @@ import be.florien.joinorm.annotation.JoIgnore;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 import be.florien.teambuilder.database.table.TranslationTableField;
-import be.florien.teambuilder.model.table.MoveTable;
 
 @JoTable(tableName = "moves", isGeneratingWrite = false)
 public class Move implements Comparable<Move>, Parcelable {
@@ -20,27 +20,27 @@ public class Move implements Comparable<Move>, Parcelable {
     @JoId
     public int id = -10;
     public String identifier;
-    @JoJoin(isReferenceJoin = true, getTableRef = "generation_id")
-    public Generation generations;
-    @JoJoin(isReferenceJoin = true, getTableRef = "types_id")
-    public Type types;
     public int power;
     public int pp;
     public int accuracy;
     public int priority;
-//    public MoveTarget move_targets;
-    @JoIgnore
-    public MoveDamageClass move_damage_classes;
-    @JoIgnore
-    public MoveEffect move_effects;
     public int effect_chance;
+    //    public MoveTarget move_targets;
+    @JoJoin(getTableRef = "generation_id", isReferenceJoin = true)
+    public Generation generations;
+    @JoJoin(getTableRef = "types_id", isReferenceJoin = true)
+    public Type types;
+    @JoJoin(getTableRef = "damage_class_id", isReferenceJoin = true)
+    public MoveDamageClass move_damage_classes;
+    @JoJoin(getTableRef = "effect_id", isReferenceJoin = true)
+    public MoveEffect move_effects;
     @JoJoin(getTableClass = TranslationTableField.class)
     public DualStringTranslation move_names;
-    @JoIgnore
+    @JoJoin(getTableRef = "move_id")
     public MoveMeta move_meta;
-    @JoJoin(isLeftJoin = true)
+    @JoJoin(getTableRef = "move_id", isLeftJoin = true)
     public List<PokemonMoveForMove> pokemon_moves;
-    @JoIgnore
+    @JoJoin(getTableRef = "move_id", isLeftJoin = true)
     public Machine machines;
 
     public Move() {
@@ -66,11 +66,9 @@ public class Move implements Comparable<Move>, Parcelable {
     }
 
     @Override
-    public int compareTo(Move another) {
-        if (move_names != null && move_names != null) {
+    public int compareTo(@NonNull Move another) {
+        if (move_names != null && another.move_names != null) {
             return move_names.first.compareTo(another.move_names.first);
-        } else if (another.move_names != null && another.move_names != null) {
-            return another.move_names.first.compareTo(null);
         } else {
             return 0;
         }

@@ -4,15 +4,24 @@ package be.florien.teambuilder.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoJoin;
+import be.florien.joinorm.annotation.JoTable;
+
+@JoTable(isGeneratingWrite = false)
 public class PokemonMoveForPokemon implements Parcelable {
 
+    @JoId
     public int pokemon_id;
     public int move_id;
     public int pokemon_move_method_id;
     public int level;
     public int order;
+    @JoJoin(getTableRef = "move_id", isReferenceJoin = true)
     public Move moves;
 
+    @JoIgnore
     public static Parcelable.Creator<PokemonMoveForPokemon> CREATOR = new Creator<PokemonMoveForPokemon>() {
 
         @Override

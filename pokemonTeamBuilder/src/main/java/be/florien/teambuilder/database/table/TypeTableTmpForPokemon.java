@@ -1,11 +1,13 @@
 
 package be.florien.teambuilder.database.table;
 
+import be.florien.joinorm.annotation.JoCustomJoin;
 import be.florien.joinorm.architecture.DBTable;
-import be.florien.teambuilder.model.table.GenerationTable;
+import be.florien.teambuilder.model.table.*;
 import be.florien.teambuilder.model.Type;
+import be.florien.teambuilder.model.table.GenerationTable;
 
-public class TypeTable extends DBTable<Type> {
+public class TypeTableTmpForPokemon extends DBTable<Type> {
 
     public static final String TABLE_NAME = "types";
     public static final String TABLE_LANGUAGE_NAME = "type_names";
@@ -18,33 +20,39 @@ public class TypeTable extends DBTable<Type> {
     private static final String COLUMN_LANGUAGE_TYPE_ID = "type_id";
     private static final String COLUMN_LANGUAGE_NAME = "name";
 
-    public TypeTable() {
+    public TypeTableTmpForPokemon() {
         super(TABLE_NAME, Type.class);
     }
 
+    @JoCustomJoin(getParams = "this, (TypeTableTmpForPokemon) innerTable", getTableFor = be.florien.teambuilder.model.table.PokemonTable.class)
+    public String getTypeJoin(be.florien.teambuilder.model.table.PokemonTable tablePokemon, be.florien.teambuilder.database.table.TypeTableTmpForPokemon field) {
+        return "JOIN pokemon_types ON " + tablePokemon.getDataName() + "." + tablePokemon.getId() + " = pokemon_types.pokemon_id" +
+                " JOIN " + field.getDataName() + " ON " + field.getDataName() + ".id = pokemon_types.types_id";
+    }
+
     @Override
-    public TypeTable selectId() {
+    public TypeTableTmpForPokemon selectId() {
         selectId(COLUMN_TYPE_ID);
         return this;
     }
 
-    public TypeTable selectIdentifier() {
+    public TypeTableTmpForPokemon selectIdentifier() {
         selectString(COLUMN_TYPE_IDENTIFIER);
         return this;
     }
 
-    public TypeTable selectGeneration(GenerationTable genTable) {
+    public TypeTableTmpForPokemon selectGeneration(GenerationTable genTable) {
         selectTable(genTable);
         return this;
     }
     
-    public TypeTable selectTypeEfficacityAsAttack(TypeEfficacityAsAttackTable table) {
+    public TypeTableTmpForPokemon selectTypeEfficacityAsAttack(TypeEfficacityAsAttackTable table) {
         table.setAlias("attack");
         selectTable(table);
         return this;
     }
     
-    public TypeTable selectTypeEfficacityAsDefense(TypeEfficacityAsDefenseTable table) {
+    public TypeTableTmpForPokemon selectTypeEfficacityAsDefense(TypeEfficacityAsDefenseTable table) {
         table.setAlias("defense");
         selectTable(table);
         return this;
@@ -69,7 +77,7 @@ public class TypeTable extends DBTable<Type> {
         return COLUMN_TYPE_ID;
     }
 
-    public TypeTable selectName() {
+    public TypeTableTmpForPokemon selectName() {
         selectTable(new TranslationTableField(TABLE_LANGUAGE_NAME, COLUMN_LANGUAGE_TYPE_ID, COLUMN_LANGUAGE_NAME));
         return this;
     }

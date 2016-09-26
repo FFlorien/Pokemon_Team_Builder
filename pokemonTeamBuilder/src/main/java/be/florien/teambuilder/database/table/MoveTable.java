@@ -52,7 +52,7 @@ public class MoveTable extends DBTable<Move> {
         return this;
     }
 
-    public MoveTable selectType(TypeTable table) {
+    public MoveTable selectType(TypeTableTmpForPokemon table) {
         selectTable(table);
         return this;
     }
@@ -114,7 +114,7 @@ public class MoveTable extends DBTable<Move> {
 
     @Override
     public String getJoinToInnerTable(DBTable<?> foreignTable) {
-        if (foreignTable instanceof TypeTable) {
+        if (foreignTable instanceof TypeTableTmpForPokemon) {
             return getJoinOnRef(foreignTable, COLUMN_TYPE, false);
         } else if (foreignTable instanceof GenerationTable) {
             return getJoinOnRef(foreignTable, COLUMN_GENERATION, false);

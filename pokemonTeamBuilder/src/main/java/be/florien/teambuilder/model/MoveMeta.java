@@ -4,9 +4,17 @@ package be.florien.teambuilder.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoJoin;
+import be.florien.joinorm.annotation.JoTable;
+
+@JoTable
 public class MoveMeta implements Parcelable {
 
+    @JoId
     public int move_id;
+    @JoId
     public int meta_category_id;
     public int meta_ailment_id;
     public int min_hits;
@@ -19,8 +27,10 @@ public class MoveMeta implements Parcelable {
     public int ailment_chance;
     public int flinch_chance;
     public int stat_chance;
+    @JoJoin(getTableRef = "meta_ailment_id", isReferenceJoin = true)
     public MoveMetaAilment move_meta_ailments;
 
+    @JoIgnore
     public static Parcelable.Creator<MoveMeta> CREATOR = new Creator<MoveMeta>() {
 
         @Override

@@ -9,7 +9,7 @@ import be.florien.teambuilder.database.table.PokemonFormTable;
 import be.florien.teambuilder.database.table.PokemonMoveForPokemonTable;
 import be.florien.teambuilder.database.table.PokemonSpecieTable;
 import be.florien.teambuilder.database.table.PokemonTable;
-import be.florien.teambuilder.database.table.TypeTable;
+import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.fragment.PokemonSpecieListFilterDialogFragment.SpecieFilter;
 import be.florien.teambuilder.model.PokemonSpecie;
 
@@ -31,7 +31,7 @@ public class PokemonSpecieForMoveListLoader extends AbstractAsyncTaskLoader<List
 
         DBTableQueryHelper<PokemonSpecie> dataSource = new DBTableQueryHelper<PokemonSpecie>(getContext());
 
-        TypeTable typeTable = new TypeTable().selectId();
+        TypeTableTmpForPokemon typeTable = new TypeTableTmpForPokemon().selectId();
         PokemonFormTable pokemonFormTable = new PokemonFormTable().selectId().selectName();
         PokemonMoveForPokemonTable pokemonMoveForPokemonTable = new PokemonMoveForPokemonTable().selectId().selectLevel().selectMethod();
         PokemonTable pokemonTable = new PokemonTable().selectId()

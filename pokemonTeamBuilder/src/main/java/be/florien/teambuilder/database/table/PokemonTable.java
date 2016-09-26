@@ -37,7 +37,7 @@ public class PokemonTable extends DBTable<Pokemon> {
         return this;
     }
 
-    public PokemonTable selectType(TypeTable typeTable) {
+    public PokemonTable selectType(TypeTableTmpForPokemon typeTable) {
         selectTable(typeTable);
         return this;
     }
@@ -54,9 +54,9 @@ public class PokemonTable extends DBTable<Pokemon> {
 
     @Override
     public String getJoinToInnerTable(DBTable<?> field) {
-        if (field instanceof TypeTable) {
+        if (field instanceof TypeTableTmpForPokemon) {
             return "JOIN " + TABLE_TYPE_NAME + " ON " + getDataName() + "." + getId() + " = " + TABLE_TYPE_NAME + "." + COLUMN_TYPE_POKEMON_ID +
-                    " JOIN " + field.getDataName() + " ON " + field.getDataName() + "." + TypeTable.COLUMN_TYPE_ID + " = " + TABLE_TYPE_NAME + "."
+                    " JOIN " + field.getDataName() + " ON " + field.getDataName() + "." + TypeTableTmpForPokemon.COLUMN_TYPE_ID + " = " + TABLE_TYPE_NAME + "."
                     + COLUMN_TYPE_TYPE_ID;
         } else if (field instanceof PokemonFormTable) {
             return getJoinOnId(field, PokemonFormTable.COLUMN_POKEMON_ID, false);

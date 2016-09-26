@@ -8,7 +8,7 @@ import be.florien.teambuilder.database.helper.DBTableQueryHelper;
 import be.florien.teambuilder.database.table.PokemonFormTable;
 import be.florien.teambuilder.database.table.PokemonSpecieTable;
 import be.florien.teambuilder.database.table.PokemonTable;
-import be.florien.teambuilder.database.table.TypeTable;
+import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.model.PokemonSpecie;
 
 public class PokemonSpecieLoader extends AbstractAsyncTaskLoader<PokemonSpecie> {
@@ -28,7 +28,7 @@ public class PokemonSpecieLoader extends AbstractAsyncTaskLoader<PokemonSpecie> 
         DBTableQueryHelper<PokemonSpecie> dataQueryHelper = new DBTableQueryHelper<PokemonSpecie>(getContext());
         PokemonSpecieTable table = new PokemonSpecieTable().selectId().selectName()
                 .selectPokemon(new PokemonTable().selectId()
-                        .selectType(new TypeTable().selectId().selectName())
+                        .selectType(new TypeTableTmpForPokemon().selectId().selectName())
                         .selectForm(new PokemonFormTable().selectId().selectName()));
         table.addWhere(new WhereStatement(PokemonSpecieTable.COLUMN_ID, mId));
         return dataQueryHelper.query(table).get(0);

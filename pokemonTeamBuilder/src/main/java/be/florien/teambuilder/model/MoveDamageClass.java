@@ -4,11 +4,21 @@ package be.florien.teambuilder.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoJoin;
+import be.florien.joinorm.annotation.JoTable;
+import be.florien.teambuilder.database.table.TranslationTableField;
+
+@JoTable(isGeneratingWrite = false)
 public class MoveDamageClass implements Parcelable {
 
+    @JoId
     public int id;
+    @JoJoin(getTableClass = TranslationTableField.class)
     public DualStringTranslation move_damage_class_prose;
-    
+
+    @JoIgnore
     public static Parcelable.Creator<MoveDamageClass> CREATOR = new Creator<MoveDamageClass>() {
         
         @Override

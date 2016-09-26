@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import be.florien.teambuilder.R;
 import be.florien.teambuilder.model.Pokemon;
 import be.florien.teambuilder.model.PokemonSpecie;
-import be.florien.teambuilder.model.UserPokemonSpecieCatched;
+import be.florien.teambuilder.model.UserPokemonSpecieCaught;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.List;
 public class PokemonSpecieAdapter extends AbsPokemonSpecieAdapter {
     private List<Integer> mCatched;
 
-    public void setCatched(List<UserPokemonSpecieCatched> catched) {
+    public void setCatched(List<UserPokemonSpecieCaught> catched) {
         mCatched = new ArrayList<Integer>();
-        for (UserPokemonSpecieCatched pkmnCatched : catched) {
+        for (UserPokemonSpecieCaught pkmnCatched : catched) {
             mCatched.add(pkmnCatched.id);
         }
         notifyDataSetChanged();

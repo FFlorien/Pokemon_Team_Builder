@@ -4,8 +4,16 @@ package be.florien.teambuilder.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoJoin;
+import be.florien.joinorm.annotation.JoTable;
+import be.florien.teambuilder.database.table.TranslationTableField;
+
+@JoTable(isGeneratingWrite = false)
 public class PokemonForm implements Parcelable {
 
+    @JoId
     public int id;
     public String identifier;
     public String form_identifier;
@@ -13,6 +21,7 @@ public class PokemonForm implements Parcelable {
     public int order;
     public int form_order;
     public boolean is_mega;
+    @JoJoin(getTableClass = TranslationTableField.class)
     public DualStringTranslation pokemon_form_names;
 
     public PokemonForm() {
@@ -28,6 +37,7 @@ public class PokemonForm implements Parcelable {
         pokemon_form_names = in.readParcelable(DualStringTranslation.class.getClassLoader());
     }
 
+    @JoIgnore
     public static Parcelable.Creator<PokemonForm> CREATOR = new Creator<PokemonForm>() {
 
         @Override

@@ -7,17 +7,30 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.florien.joinorm.annotation.JoCustomJoin;
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoJoin;
+import be.florien.joinorm.annotation.JoTable;
+import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
+
+@JoTable(isGeneratingWrite = false)
 public class Pokemon implements Parcelable {
 
+    @JoId
     public int id;
     public String identifier;
     public int height;
     public int weight;
     public int order;
     public int base_experience;
+    @JoJoin(getTableRef = "pokemon_id")
     public List<PokemonForm> pokemon_forms;
-    public List<String> abilities;
+    @JoIgnore
+    public List<String> abilities;//todo
+    @JoJoin(getTableClass = TypeTableTmpForPokemon.class)
     public List<Type> types;
+    @JoJoin(getTableRef = "pokemon_id")
     public List<PokemonMoveForPokemon> pokemon_moves;
 
     public Pokemon() {
@@ -30,14 +43,15 @@ public class Pokemon implements Parcelable {
         weight = in.readInt();
         order = in.readInt();
         base_experience = in.readInt();
-        abilities = new ArrayList<String>();
-        types = new ArrayList<Type>();
-        pokemon_moves = new ArrayList<PokemonMoveForPokemon>();
+        abilities = new ArrayList<>();
+        types = new ArrayList<>();
+        pokemon_moves = new ArrayList<>();
         in.readStringList(abilities);
         in.readTypedList(types, Type.CREATOR);
         in.readTypedList(pokemon_moves, PokemonMoveForPokemon.CREATOR);
     }
 
+    @JoIgnore
     public static Parcelable.Creator<Pokemon> CREATOR = new Creator<Pokemon>() {
 
         @Override

@@ -9,7 +9,7 @@ import be.florien.teambuilder.database.table.MachineTable;
 import be.florien.teambuilder.database.table.MoveDamageClassTable;
 import be.florien.teambuilder.database.table.MoveMetaTable;
 import be.florien.teambuilder.database.table.MoveTable;
-import be.florien.teambuilder.database.table.TypeTable;
+import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.fragment.MoveListFilterDialogFragment.MoveFilter;
 import be.florien.teambuilder.model.Move;
 
@@ -29,7 +29,7 @@ public class MoveListLoader extends AbstractAsyncTaskLoader<List<Move>> {
     public List<Move> loadInBackground() {
 
         DBTableQueryHelper<Move> dataSource = new DBTableQueryHelper<Move>(getContext());
-        TypeTable typeTable = new TypeTable().selectId().selectName();
+        TypeTableTmpForPokemon typeTable = new TypeTableTmpForPokemon().selectId().selectName();
         MoveMetaTable metaTable = new MoveMetaTable().selectAilment();
         MoveTable table =
                 new MoveTable().selectName().selectPower().selectPP()

@@ -28,7 +28,7 @@ public class TypeEfficacityAsAttackTable extends DBTable<TypeEfficacyAsAttack> {
         return this;
     }
     
-    public TypeEfficacityAsAttackTable selectTargetType(TypeTable table) {
+    public TypeEfficacityAsAttackTable selectTargetType(TypeTableTmpForPokemon table) {
         table.setAlias("typeTargetted");
         selectTable(table);
         return this;
@@ -36,7 +36,7 @@ public class TypeEfficacityAsAttackTable extends DBTable<TypeEfficacyAsAttack> {
 
     @Override
     public String getJoinToInnerTable(DBTable<?> field) {
-        if (field instanceof TypeTable) {
+        if (field instanceof TypeTableTmpForPokemon) {
             return getJoinOnRef(field, COLUMN_TARGET_TYPE, false);
         }
         return "";

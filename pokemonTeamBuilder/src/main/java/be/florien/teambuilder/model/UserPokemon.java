@@ -4,8 +4,14 @@ package be.florien.teambuilder.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
+import be.florien.joinorm.annotation.JoTable;
+
+@JoTable
 public class UserPokemon implements Parcelable {
 
+    @JoId
     public int id;
     public int pokemon_id;
     public int level;
@@ -21,6 +27,7 @@ public class UserPokemon implements Parcelable {
         has_evolved = in.readInt() == 1;
     }
 
+    @JoIgnore
     public static Parcelable.Creator<UserPokemon> CREATOR = new Creator<UserPokemon>() {
 
         @Override

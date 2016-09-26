@@ -11,7 +11,7 @@ import be.florien.teambuilder.database.table.MachineTable;
 import be.florien.teambuilder.database.table.MoveDamageClassTable;
 import be.florien.teambuilder.database.table.MoveMetaTable;
 import be.florien.teambuilder.database.table.MoveTable;
-import be.florien.teambuilder.database.table.TypeTable;
+import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.model.Move;
 
 public class MoveLoader extends AbstractAsyncTaskLoader<Move> {
@@ -45,7 +45,7 @@ public class MoveLoader extends AbstractAsyncTaskLoader<Move> {
                         new MoveMetaTable().selectAilment().selectId().selectAilmentChance().selectCritRate().selectFlinchChance().selectHealing()
                                 .selectMaxHits().selectMaxTurns().selectMinHits().selectMinTurns().selectRecoil().selectStatChance())
                 .selectType(
-                        new TypeTable()
+                        new TypeTableTmpForPokemon()
                                 .selectId()
                                 .selectName()
                 );
