@@ -46,13 +46,13 @@ public class TypeTableTmpForPokemon extends DBTable<Type> {
         return this;
     }
     
-    public TypeTableTmpForPokemon selectTypeEfficacityAsAttack(TypeEfficacityAsAttackTable table) {
+    public TypeTableTmpForPokemon selectTypeEfficacityAsAttack(TypeEfficacyAsAttackTable table) {
         table.setAlias("attack");
         selectTable(table);
         return this;
     }
     
-    public TypeTableTmpForPokemon selectTypeEfficacityAsDefense(TypeEfficacityAsDefenseTable table) {
+    public TypeTableTmpForPokemon selectTypeEfficacityAsDefense(TypeEfficacyAsDefenseTable table) {
         table.setAlias("defense");
         selectTable(table);
         return this;
@@ -64,10 +64,10 @@ public class TypeTableTmpForPokemon extends DBTable<Type> {
             return getJoinOnRef(field, COLUMN_TYPE_GENERATION_ID, false);
         }else if(field instanceof TranslationTableField){
             return ((TranslationTableField)field).getJoinToTranslatedTable(getDataName() + "." + getId());
-        }else if(field instanceof TypeEfficacityAsAttackTable){
-            return getJoinOnId(field, TypeEfficacityAsAttackTable.COLUMN_DAMAGE_TYPE, false);
-        }else if(field instanceof TypeEfficacityAsDefenseTable){
-            return getJoinOnId(field, TypeEfficacityAsDefenseTable.COLUMN_TARGET_TYPE, false);
+        }else if(field instanceof TypeEfficacyAsAttackTable){
+            return getJoinOnId(field, "damage_type", false);
+        }else if(field instanceof TypeEfficacyAsDefenseTable){
+            return getJoinOnId(field, "target_type", false);
         }
         return "";
     }

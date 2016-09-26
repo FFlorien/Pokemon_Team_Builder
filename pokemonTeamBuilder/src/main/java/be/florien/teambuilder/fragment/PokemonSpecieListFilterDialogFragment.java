@@ -20,14 +20,14 @@ import be.florien.joinorm.architecture.WhereStatement;
 import be.florien.teambuilder.R;
 import be.florien.teambuilder.adapter.GenerationAdapter;
 import be.florien.teambuilder.adapter.TypeAdapter;
-import be.florien.teambuilder.database.table.PokemonFormTable;
-import be.florien.teambuilder.database.table.PokemonSpecieTable;
-import be.florien.teambuilder.database.table.PokemonTable;
 import be.florien.teambuilder.loader.GenerationLoader;
 import be.florien.teambuilder.loader.TypeListLoader;
 import be.florien.teambuilder.model.DualStringTranslation;
 import be.florien.teambuilder.model.Generation;
 import be.florien.teambuilder.model.Type;
+import be.florien.teambuilder.model.table.PokemonFormTable;
+import be.florien.teambuilder.model.table.PokemonSpecieTable;
+import be.florien.teambuilder.model.table.PokemonTable;
 
 import java.util.List;
 
@@ -179,7 +179,7 @@ public class PokemonSpecieListFilterDialogFragment extends DialogFragment {
                                 WhereCondition.IN));
             }
             if (generation != 0) {
-                specieTable.addWhere(new WhereStatement(PokemonSpecieTable.COLUMN_GENERATION_ID, generation));
+                specieTable.addWhere(new WhereStatement("generation_id", generation));
             }
             if (mega) {
                 formTable.addWhere(new WhereStatement(PokemonFormTable.COLUMN_IS_MEGA, 1));

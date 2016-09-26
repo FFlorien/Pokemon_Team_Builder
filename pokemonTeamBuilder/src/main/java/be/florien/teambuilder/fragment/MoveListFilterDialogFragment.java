@@ -23,8 +23,6 @@ import be.florien.teambuilder.R;
 import be.florien.teambuilder.adapter.MoveDamageClassAdapter;
 import be.florien.teambuilder.adapter.MoveMetaAilmentAdapter;
 import be.florien.teambuilder.adapter.TypeAdapter;
-import be.florien.teambuilder.database.table.MoveMetaTable;
-import be.florien.teambuilder.database.table.MoveTable;
 import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.loader.MoveDamageClassLoader;
 import be.florien.teambuilder.loader.MoveMaxValuesLoader;
@@ -37,6 +35,9 @@ import be.florien.teambuilder.model.MoveMetaAilment;
 import be.florien.teambuilder.model.MoveMetaAilmentClassEnum;
 import be.florien.teambuilder.model.Type;
 import be.florien.teambuilder.model.TypeEnum;
+import be.florien.teambuilder.model.table.MoveMetaTable;
+import be.florien.teambuilder.model.table.MoveTable;
+import be.florien.teambuilder.model.table.TypeTable;
 
 import java.util.List;
 
@@ -158,16 +159,16 @@ public class MoveListFilterDialogFragment extends DialogFragment {
             dest.writeInt(ailmentSelection);
         }
 
-        public void setFilter(TypeTableTmpForPokemon typeTable, MoveMetaTable metaTable, MoveTable table) {
+        public void setFilter(TypeTable typeTable, MoveMetaTable metaTable, MoveTable table) {
 
             if (typeId != null && typeId != TypeEnum.ALL.getId()) {
                 typeTable.addWhere(new WhereStatement(TypeTableTmpForPokemon.COLUMN_TYPE_ID, typeId, WhereCondition.EQUAL));
             }
             if (ailmentId != null && ailmentId != MoveMetaAilmentClassEnum.ALL.getId()) {
-                metaTable.addWhere(new WhereStatement(MoveMetaTable.COLUMN_AILMENT_ID, ailmentId));
+                metaTable.addWhere(new WhereStatement(MoveMetaTable.COLUMN_META_AILMENT_ID, ailmentId));
             }
             if (damageClassId != null && damageClassId != MoveDamageClassEnum.ALL.getId()) {
-                table.addWhere(new WhereStatement(MoveTable.COLUMN_DAMAGE_CLASS, damageClassId));
+                table.addWhere(new WhereStatement(MoveTable.COLUMN_MOVE_DAMAGE_CLASSES, damageClassId));
             }
             if (minPower != null && minPower != 0) {
                 table.addWhere(new WhereStatement(MoveTable.COLUMN_POWER, minPower, WhereCondition.MORE_EQUAL));

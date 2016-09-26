@@ -5,15 +5,17 @@ import android.content.Context;
 
 import be.florien.joinorm.architecture.WhereStatement;
 import be.florien.teambuilder.database.helper.DBTableQueryHelper;
-import be.florien.teambuilder.database.table.ItemTable;
-import be.florien.teambuilder.database.table.MachineTable;
-import be.florien.teambuilder.database.table.MoveDamageClassTable;
-import be.florien.teambuilder.database.table.MoveMetaTable;
-import be.florien.teambuilder.database.table.MoveTable;
-import be.florien.teambuilder.database.table.PokemonMoveForPokemonTable;
+import be.florien.teambuilder.database.table.TranslationTableField;
 import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.fragment.MoveListFilterDialogFragment.MoveFilter;
 import be.florien.teambuilder.model.PokemonMoveForPokemon;
+import be.florien.teambuilder.model.table.ItemTable;
+import be.florien.teambuilder.model.table.MachineTable;
+import be.florien.teambuilder.model.table.MoveDamageClassTable;
+import be.florien.teambuilder.model.table.MoveMetaTable;
+import be.florien.teambuilder.model.table.MoveTable;
+import be.florien.teambuilder.model.table.PokemonMoveForPokemonTable;
+import be.florien.teambuilder.model.table.TypeTable;
 
 import java.util.List;
 
@@ -31,23 +33,22 @@ public class PokemonMoveForPokemonListLoader extends AbstractAsyncTaskLoader<Lis
     @Override
     public List<PokemonMoveForPokemon> loadInBackground() {
 
-        DBTableQueryHelper<PokemonMoveForPokemon> dataSource = new DBTableQueryHelper<PokemonMoveForPokemon>(getContext());
-        TypeTableTmpForPokemon typeTable = new TypeTableTmpForPokemon().selectId().selectName();
-        MoveMetaTable metaTable = new MoveMetaTable().selectAilment();
-        MoveTable moveTable = new MoveTable().selectName().selectPower().selectPP()
-                .selectMachine(new MachineTable().selectId().selectItem(new ItemTable().selectId().selectName()))
-                .selectMeta(metaTable)
-                .selectDamageClass(new MoveDamageClassTable().selectId())
-                .selectType(typeTable
+        DBTableQueryHelper<PokemonMoveForPokemon> dataSource = new DBTableQueryHelper<>(getContext());
+        TypeTable typeTable = new TypeTable().selectId().selectTypeNames(TranslationTableField.forLanguage()/*todo*/);
+        MoveMetaTable metaTable = new MoveMetaTable().selectMetaAilmentId();
+        MoveTable moveTable = new MoveTable().selectMoveNames(TranslationTableField.forGeneration()/*todo*/).selectPower().selectPp()
+                .selectMachines(new MachineTable().selectId().selectItems(new ItemTable().selectId().selectItemNames(TranslationTableField.forGeneration()/*todo*/)))
+                .selectMoveMeta(metaTable)
+                .selectMoveDamageClasses(new MoveDamageClassTable().selectId())
+                .selectTypes(typeTable
                 );
-        PokemonMoveForPokemonTable table = new PokemonMoveForPokemonTable().selectLevel().selectMethod().selectMove(
+        PokemonMoveForPokemonTable table = new PokemonMoveForPokemonTable().selectLevel().selectPokemonMoveMethodId().selectMoves(
                 moveTable);
         if (mFilter != null) {
             mFilter.setFilter(typeTable, metaTable, moveTable);
         }
         table.addWhere(new WhereStatement(PokemonMoveForPokemonTable.COLUMN_POKEMON_ID, mId));
-        List<PokemonMoveForPokemon> list = dataSource.query(table);
-        return list;
+        return dataSource.query(table);
     }
 
 }

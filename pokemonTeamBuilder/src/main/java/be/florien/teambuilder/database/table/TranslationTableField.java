@@ -19,12 +19,18 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
     
     //TODO add fairy translation...
 
-    public static final String TABLE_LANGUAGE_NAME = "generation_names";
-    private static final String COLUMN_LANGUAGE_ID = "generation_id";
+    public static final String TABLE_GENERATION_LANGUAGE_NAME = "generation_names";
+    public static final String TABLE_LANGUAGE_LANGUAGE_NAME = "language_names";
+    private static final String COLUMN_GENERATION_LANGUAGE_ID = "generation_id";
+    private static final String COLUMN_LANGUAGE_LANGUAGE_ID = "language_id";
     private static final String COLUMN_LANGUAGE_NAME = "name";
 
     public static TranslationTableField forGeneration() {
-        return new TranslationTableField(TABLE_LANGUAGE_NAME, COLUMN_LANGUAGE_ID, COLUMN_LANGUAGE_NAME);
+        return new TranslationTableField(TABLE_GENERATION_LANGUAGE_NAME, COLUMN_GENERATION_LANGUAGE_ID, COLUMN_LANGUAGE_NAME);
+    }
+
+    public static TranslationTableField forLanguage() {
+        return new TranslationTableField(TABLE_LANGUAGE_LANGUAGE_NAME, COLUMN_LANGUAGE_LANGUAGE_ID, COLUMN_LANGUAGE_NAME);
     }
 
     public TranslationTableField(String tableName, String fieldIdName, String translationFieldName) {
@@ -53,24 +59,24 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
     private static final HashMap<String, List<Integer>> mCompleteTranslations;
     static {
         mCompleteTranslations = new HashMap<>();
-        mCompleteTranslations.put(MoveDamageClassTable.TABLE_PROSE_NAME, Arrays.asList(1, 9, 10));
-        mCompleteTranslations.put(MoveEffectTable.TABLE_PROSE_NAME, Collections.singletonList(9));
-        mCompleteTranslations.put(MoveMetaAilmentTable.TABLE_NAME_NAME, Collections.singletonList(9));
-        mCompleteTranslations.put(MoveTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 9));
-        mCompleteTranslations.put(PokemonFormTable.TABLE_LANGUAGE_NAME, Arrays.asList(5, 9));
-        mCompleteTranslations.put(PokemonSpecieTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 9));
+        mCompleteTranslations.put("move_damage_class_names", Arrays.asList(1, 9, 10));
+        mCompleteTranslations.put("move_effect_names", Collections.singletonList(9));
+        mCompleteTranslations.put("move_meta_ailment", Collections.singletonList(9));
+        mCompleteTranslations.put("move_names", Arrays.asList(1, 5, 9));
+        mCompleteTranslations.put("pokemon_form_names", Arrays.asList(5, 9));
+        mCompleteTranslations.put("pokemon_specie_names", Arrays.asList(1, 5, 6, 9));
         mCompleteTranslations.put(TypeTableTmpForPokemon.TABLE_LANGUAGE_NAME, Collections.singletonList(9));
-        mCompleteTranslations.put(ItemTable.TABLE_LANGUAGE_NAME, Collections.singletonList(9));
+        mCompleteTranslations.put("item_names", Collections.singletonList(9));
     }
     private static final HashMap<String, List<Integer>> mIncompleteTranslations;
     static {
         mIncompleteTranslations = new HashMap<>();
-        mIncompleteTranslations.put(MoveEffectTable.TABLE_PROSE_NAME, Collections.singletonList(10));
-        mIncompleteTranslations.put(MoveMetaAilmentTable.TABLE_NAME_NAME, Collections.singletonList(10));
-        mIncompleteTranslations.put(MoveTable.TABLE_LANGUAGE_NAME, Arrays.asList(6, 7, 8, 10));
-        mIncompleteTranslations.put(PokemonSpecieTable.TABLE_LANGUAGE_NAME, Arrays.asList(2, 3, 4, 10));
+        mIncompleteTranslations.put("move_effect_names", Collections.singletonList(10));
+        mIncompleteTranslations.put("move_meta_ailment_names", Collections.singletonList(10));
+        mIncompleteTranslations.put("move_names", Arrays.asList(6, 7, 8, 10));
+        mIncompleteTranslations.put("pokemon_specie_names", Arrays.asList(2, 3, 4, 10));
         mIncompleteTranslations.put(TypeTableTmpForPokemon.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 7, 8, 10));
-        mIncompleteTranslations.put(ItemTable.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 7, 8, 10));
+        mIncompleteTranslations.put("item_names", Arrays.asList(1, 5, 6, 7, 8, 10));
     }
 
     @JoCustomJoin(getParams = "getDataName() + \".\" + getId()")

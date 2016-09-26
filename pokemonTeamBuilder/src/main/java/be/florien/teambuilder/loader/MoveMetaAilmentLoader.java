@@ -3,8 +3,8 @@ package be.florien.teambuilder.loader;
 import android.content.Context;
 
 import be.florien.teambuilder.database.helper.DBTableQueryHelper;
-import be.florien.teambuilder.database.table.MoveMetaAilmentTable;
 import be.florien.teambuilder.model.MoveMetaAilment;
+import be.florien.teambuilder.model.table.MoveMetaAilmentTable;
 
 import java.util.List;
 

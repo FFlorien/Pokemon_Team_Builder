@@ -7,10 +7,11 @@ import java.util.List;
 
 import be.florien.joinorm.architecture.WhereStatement;
 import be.florien.teambuilder.database.helper.DBTableQueryHelper;
-import be.florien.teambuilder.database.table.TypeEfficacityAsAttackTable;
-import be.florien.teambuilder.database.table.TypeEfficacityAsDefenseTable;
 import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.model.Type;
+import be.florien.teambuilder.model.table.TypeEfficacyAsAttackTable;
+import be.florien.teambuilder.model.table.TypeEfficacyAsDefenseTable;
+import be.florien.teambuilder.model.table.TypeTable;
 
 public class TypeLoader extends AbstractAsyncTaskLoader<Type> {
 
@@ -29,11 +30,11 @@ public class TypeLoader extends AbstractAsyncTaskLoader<Type> {
                         .selectIdentifier()
                         .selectName()
                         .selectTypeEfficacityAsAttack(
-                                new TypeEfficacityAsAttackTable().selectId().selectDamageFactor()
-                                        .selectTargetType(new TypeTableTmpForPokemon().selectId()))
+                                new TypeEfficacyAsAttackTable().selectId().selectDamageFactor()
+                                        .selectTypeTargetted(new TypeTable().selectId()))
                         .selectTypeEfficacityAsDefense(
-                                new TypeEfficacityAsDefenseTable().selectId().selectDamageFactor()
-                                        .selectDamageType(new TypeTableTmpForPokemon().selectId())
+                                new TypeEfficacyAsDefenseTable().selectId().selectDamageFactor()
+                                        .selectTypeAttacking(new TypeTable().selectId())
                         );
         table.addWhere(new WhereStatement(TypeTableTmpForPokemon.COLUMN_TYPE_ID, String.valueOf(mId)));
         DBTableQueryHelper<Type> queryHelper = new DBTableQueryHelper<Type>(getContext());
