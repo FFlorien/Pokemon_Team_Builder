@@ -16,21 +16,43 @@ import java.util.HashMap;
 import java.util.List;
 
 public class TranslationTableField extends DBTable<DualStringTranslation> {
-    
+
     //TODO add fairy translation...
 
-    public static final String TABLE_GENERATION_LANGUAGE_NAME = "generation_names";
-    public static final String TABLE_LANGUAGE_LANGUAGE_NAME = "language_names";
-    private static final String COLUMN_GENERATION_LANGUAGE_ID = "generation_id";
-    private static final String COLUMN_LANGUAGE_LANGUAGE_ID = "language_id";
-    private static final String COLUMN_LANGUAGE_NAME = "name";
-
     public static TranslationTableField forGeneration() {
-        return new TranslationTableField(TABLE_GENERATION_LANGUAGE_NAME, COLUMN_GENERATION_LANGUAGE_ID, COLUMN_LANGUAGE_NAME);
+        return new TranslationTableField("generation_names", "generation_id", "name");
+    }
+
+    public static TranslationTableField forItem() {
+        return new TranslationTableField("item_names", "item_id", "name");
     }
 
     public static TranslationTableField forLanguage() {
-        return new TranslationTableField(TABLE_LANGUAGE_LANGUAGE_NAME, COLUMN_LANGUAGE_LANGUAGE_ID, COLUMN_LANGUAGE_NAME);
+        return new TranslationTableField("language_names", "language_id", "name");
+    }
+
+    public static TranslationTableField forMove() {
+        return new TranslationTableField("move_names", "move_id", "name");
+    }
+
+    public static TranslationTableField forMoveDamageClass() {
+        return new TranslationTableField("move_damage_class_prose", "move_damage_class_id", "name", "description");
+    }
+
+    public static TranslationTableField forMoveMetaAilment() {
+        return new TranslationTableField("move_meta_ailment_names", "move_meta_ailment_id", "name");
+    }
+
+    public static TranslationTableField forPokemonForm() {
+        return new TranslationTableField("pokemon_form_names", "pokemon_form_id", "form_name", "pokemon_name");
+    }
+
+    public static TranslationTableField forPokemonSpecie() {
+        return new TranslationTableField("pokemon_species_names", "pokemon_species_id", "name");
+    }
+
+    public static TranslationTableField forType() {
+        return new TranslationTableField("type_names", "type_id", "name");
     }
 
     public TranslationTableField(String tableName, String fieldIdName, String translationFieldName) {
@@ -51,12 +73,12 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         selectString(translationFieldName);
         selectString(translationFieldName2);
     }
-
     private String mTranslationTableName;
     private String mFieldIdName;
     private boolean mIsFirstParsed = false;
 
     private static final HashMap<String, List<Integer>> mCompleteTranslations;
+
     static {
         mCompleteTranslations = new HashMap<>();
         mCompleteTranslations.put("move_damage_class_names", Arrays.asList(1, 9, 10));
@@ -68,7 +90,9 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         mCompleteTranslations.put(TypeTableTmpForPokemon.TABLE_LANGUAGE_NAME, Collections.singletonList(9));
         mCompleteTranslations.put("item_names", Collections.singletonList(9));
     }
+
     private static final HashMap<String, List<Integer>> mIncompleteTranslations;
+
     static {
         mIncompleteTranslations = new HashMap<>();
         mIncompleteTranslations.put("move_effect_names", Collections.singletonList(10));
@@ -93,7 +117,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
     public String getId() {
         return mTranslationTableName + "." + mFieldIdName;
     }
-    
+
     //TODO use addWhere
 
     @Override
@@ -152,5 +176,4 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         }
         return field;
     }
-
 }

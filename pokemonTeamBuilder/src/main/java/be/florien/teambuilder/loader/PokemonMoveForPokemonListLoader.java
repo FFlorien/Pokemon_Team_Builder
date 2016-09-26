@@ -3,10 +3,11 @@ package be.florien.teambuilder.loader;
 
 import android.content.Context;
 
+import java.util.List;
+
 import be.florien.joinorm.architecture.WhereStatement;
 import be.florien.teambuilder.database.helper.DBTableQueryHelper;
 import be.florien.teambuilder.database.table.TranslationTableField;
-import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.fragment.MoveListFilterDialogFragment.MoveFilter;
 import be.florien.teambuilder.model.PokemonMoveForPokemon;
 import be.florien.teambuilder.model.table.ItemTable;
@@ -16,8 +17,6 @@ import be.florien.teambuilder.model.table.MoveMetaTable;
 import be.florien.teambuilder.model.table.MoveTable;
 import be.florien.teambuilder.model.table.PokemonMoveForPokemonTable;
 import be.florien.teambuilder.model.table.TypeTable;
-
-import java.util.List;
 
 public class PokemonMoveForPokemonListLoader extends AbstractAsyncTaskLoader<List<PokemonMoveForPokemon>> {
 
@@ -34,10 +33,10 @@ public class PokemonMoveForPokemonListLoader extends AbstractAsyncTaskLoader<Lis
     public List<PokemonMoveForPokemon> loadInBackground() {
 
         DBTableQueryHelper<PokemonMoveForPokemon> dataSource = new DBTableQueryHelper<>(getContext());
-        TypeTable typeTable = new TypeTable().selectId().selectTypeNames(TranslationTableField.forLanguage()/*todo*/);
+        TypeTable typeTable = new TypeTable().selectId().selectTypeNames(TranslationTableField.forType());
         MoveMetaTable metaTable = new MoveMetaTable().selectMetaAilmentId();
-        MoveTable moveTable = new MoveTable().selectMoveNames(TranslationTableField.forGeneration()/*todo*/).selectPower().selectPp()
-                .selectMachines(new MachineTable().selectId().selectItems(new ItemTable().selectId().selectItemNames(TranslationTableField.forGeneration()/*todo*/)))
+        MoveTable moveTable = new MoveTable().selectMoveNames(TranslationTableField.forMove()).selectPower().selectPp()
+                .selectMachines(new MachineTable().selectId().selectItems(new ItemTable().selectId().selectItemNames(TranslationTableField.forItem())))
                 .selectMoveMeta(metaTable)
                 .selectMoveDamageClasses(new MoveDamageClassTable().selectId())
                 .selectTypes(typeTable

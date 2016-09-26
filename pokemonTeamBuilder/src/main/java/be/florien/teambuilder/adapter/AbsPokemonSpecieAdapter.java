@@ -10,13 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-import be.florien.teambuilder.R;
-import be.florien.teambuilder.model.Pokemon;
-import be.florien.teambuilder.model.PokemonForm;
-import be.florien.teambuilder.model.PokemonSpecie;
-import be.florien.teambuilder.model.Type;
-import be.florien.teambuilder.model.TypeEnum;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,13 +18,20 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-public abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<PokemonSpecie> implements SectionIndexer {
-    HashMap<String, Integer> mIndexer;
-    String[] mSections;
-    protected SparseArray<Type> mTypes;
+import be.florien.teambuilder.R;
+import be.florien.teambuilder.model.Pokemon;
+import be.florien.teambuilder.model.PokemonForm;
+import be.florien.teambuilder.model.PokemonSpecie;
+import be.florien.teambuilder.model.Type;
+import be.florien.teambuilder.model.TypeEnum;
+
+abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<PokemonSpecie> implements SectionIndexer {
+    private HashMap<String, Integer> mIndexer;
+    private String[] mSections;
+    SparseArray<Type> mTypes;
 
     public void setTypes(List<Type> types) {
-        mTypes = new SparseArray<Type>();
+        mTypes = new SparseArray<>();
         for (Type type : types) {
             mTypes.put(type.id, type);
         }
@@ -40,10 +40,10 @@ public abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<Pokemo
 
     public void setItems(List<PokemonSpecie> items) {
         if (items == null) {
-            super.setItems(items);
+            super.setItems(null);
             return;
         }
-        mIndexer = new HashMap<String, Integer>(); // stores the positions for the start of each letter
+        mIndexer = new HashMap<>(); // stores the positions for the start of each letter
 
         int size = items.size();
         for (int i = size - 1; i >= 0; i--) {
@@ -56,7 +56,7 @@ public abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<Pokemo
         Set<String> keys = mIndexer.keySet(); // set of letters
 
         Iterator<String> keyIt = keys.iterator();
-        ArrayList<String> keyList = new ArrayList<String>();
+        ArrayList<String> keyList = new ArrayList<>();
 
         while (keyIt.hasNext()) {
             String key = keyIt.next();
@@ -184,7 +184,6 @@ public abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<Pokemo
     @Override
     public int getItemViewType(int position) {
         PokemonSpecie specie = getItem(position);
-        int returnValue = (specie.pokemon.size() > 1 ? 1 : 0);
-        return returnValue;
+        return (specie.pokemon.size() > 1 ? 1 : 0);
     }
 }

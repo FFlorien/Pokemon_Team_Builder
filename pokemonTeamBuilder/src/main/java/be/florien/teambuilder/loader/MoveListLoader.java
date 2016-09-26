@@ -31,11 +31,11 @@ public class MoveListLoader extends AbstractAsyncTaskLoader<List<Move>> {
     public List<Move> loadInBackground() {
 
         DBTableQueryHelper<Move> dataSource = new DBTableQueryHelper<>(getContext());
-        TypeTable typeTable = new TypeTable().selectId().selectTypeNames(TranslationTableField.forLanguage()/*todo*/);
+        TypeTable typeTable = new TypeTable().selectId().selectTypeNames(TranslationTableField.forType());
         MoveMetaTable metaTable = new MoveMetaTable().selectMetaAilmentId();
         MoveTable table =
-                new MoveTable().selectMoveNames(TranslationTableField.forGeneration()/*todo*/).selectPower().selectPp()
-                        .selectMachines(new MachineTable().selectId().selectItems(new ItemTable().selectId().selectItemNames(TranslationTableField.forGeneration()/*todo*/)))
+                new MoveTable().selectMoveNames(TranslationTableField.forMove()).selectPower().selectPp()
+                        .selectMachines(new MachineTable().selectId().selectItems(new ItemTable().selectId().selectItemNames(TranslationTableField.forItem())))
                         .selectMoveMeta(metaTable)
                         .selectMoveDamageClasses(new MoveDamageClassTable().selectId())
                         .selectTypes(typeTable

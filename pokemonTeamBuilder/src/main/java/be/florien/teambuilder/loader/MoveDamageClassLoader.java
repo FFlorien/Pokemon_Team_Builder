@@ -17,8 +17,8 @@ public class MoveDamageClassLoader extends AbstractAsyncTaskLoader<List<MoveDama
 
     @Override
     public List<MoveDamageClass> loadInBackground() {
-        MoveDamageClassTable table = new MoveDamageClassTable().selectId().selectMoveDamageClassProse(TranslationTableField.forGeneration());//todo
-        DBTableQueryHelper<MoveDamageClass> dbQueryHelper = new DBTableQueryHelper<MoveDamageClass>(getContext());
+        MoveDamageClassTable table = new MoveDamageClassTable().selectId().selectMoveDamageClassProse(TranslationTableField.forMoveDamageClass());
+        DBTableQueryHelper<MoveDamageClass> dbQueryHelper = new DBTableQueryHelper<>(getContext());
         return dbQueryHelper.query(table);
     }
 

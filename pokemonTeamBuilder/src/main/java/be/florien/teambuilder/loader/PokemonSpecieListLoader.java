@@ -27,11 +27,11 @@ public class PokemonSpecieListLoader extends AbstractAsyncTaskLoader<List<Pokemo
     @Override
     public List<PokemonSpecie> loadInBackground() {
         DBTableQueryHelper<PokemonSpecie> dataQueryHelper = new DBTableQueryHelper<>(getContext());
-        PokemonFormTable pokemonFormTable = new PokemonFormTable().selectId().selectPokemonFormNames(TranslationTableField.forGeneration()/*todo*/);
+        PokemonFormTable pokemonFormTable = new PokemonFormTable().selectId().selectPokemonFormNames(TranslationTableField.forPokemonForm());
         PokemonTable pokemonTable = new PokemonTable().selectId()
                 .selectTypes(new TypeTableTmpForPokemon().selectId())
                 .selectPokemonForms(pokemonFormTable);
-        PokemonSpecieTable specieTable = new PokemonSpecieTable().selectId().selectPokemonSpeciesNames(TranslationTableField.forGeneration()/*todo*/)
+        PokemonSpecieTable specieTable = new PokemonSpecieTable().selectId().selectPokemonSpeciesNames(TranslationTableField.forPokemonSpecie())
                 /*.selectPokemon(pokemonTable)todo*/;
         if (mFilter != null) {
             mFilter.setFilter(pokemonTable, specieTable, pokemonFormTable);

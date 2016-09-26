@@ -12,6 +12,7 @@ import be.florien.joinorm.annotation.JoIgnore;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 import be.florien.teambuilder.database.table.TranslationTableField;
+import be.florien.teambuilder.model.table.PokemonTable;
 
 @JoTable(isGeneratingWrite = false, tableName = "pokemon_species")
 public class PokemonSpecie implements Parcelable {
@@ -29,11 +30,11 @@ public class PokemonSpecie implements Parcelable {
     // public GrowthRate growthRate;
     public int order;
     public int hatch_counter;
-    @JoIgnore
+    @JoJoin(getTableRef = "species_id")
     public List<Pokemon> pokemon;
-    @JoIgnore
+    @JoJoin
     public Generation generation;
-    @JoIgnore
+    @JoJoin
     public PokemonSpecie evolve_from_species_id;
     @JoJoin(getTableClass = TranslationTableField.class)
     public DualStringTranslation pokemon_species_names;

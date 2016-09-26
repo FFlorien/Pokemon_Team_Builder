@@ -27,7 +27,7 @@ public class PokemonSpecieLoader extends AbstractAsyncTaskLoader<PokemonSpecie> 
     @Override
     public PokemonSpecie loadInBackground() {
         DBTableQueryHelper<PokemonSpecie> dataQueryHelper = new DBTableQueryHelper<>(getContext());
-        PokemonSpecieTable table = new PokemonSpecieTable().selectId().selectPokemonSpeciesNames(TranslationTableField.forGeneration()/*todo*/)
+        PokemonSpecieTable table = new PokemonSpecieTable().selectId().selectPokemonSpeciesNames(TranslationTableField.forPokemonSpecie())
                 /*.selectPokemon(new PokemonTable().selectId()
                         .selectTypes(new TypeTableTmpForPokemon().selectId().selectName())
                         .selectForm(new PokemonFormTable().selectId().selectName()))todo*/;
