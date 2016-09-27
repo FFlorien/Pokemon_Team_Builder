@@ -8,7 +8,7 @@ import be.florien.joinorm.annotation.JoIgnore;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 
-@JoTable(isGeneratingWrite = false)
+@JoTable(tableName = "machines", isGeneratingWrite = false)
 public class Machine implements Parcelable {
 
     @JoId

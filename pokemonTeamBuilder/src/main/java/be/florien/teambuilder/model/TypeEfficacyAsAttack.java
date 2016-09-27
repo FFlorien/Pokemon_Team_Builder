@@ -7,11 +7,11 @@ import be.florien.joinorm.annotation.JoId;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 
-@JoTable(isGeneratingWrite = false)
+@JoTable(tableName = "type_efficacy", isGeneratingWrite = false)
 public class TypeEfficacyAsAttack implements Parcelable {
 
-    @JoJoin
-    public Type typeTargetted;
+    @JoJoin(isReferenceJoin = true, getTableRef = "target_type_id", getAlias = "typeTargeted")
+    public Type typeTargeted;
     public int damage_factor;
     @JoId
     public int target_type_id;
@@ -20,7 +20,7 @@ public class TypeEfficacyAsAttack implements Parcelable {
     }
 
     private TypeEfficacyAsAttack(Parcel in) {
-        typeTargetted = in.readParcelable(Type.class.getClassLoader());
+        typeTargeted = in.readParcelable(Type.class.getClassLoader());
         damage_factor = in.readInt();
         target_type_id = in.readInt();
     }
@@ -42,7 +42,7 @@ public class TypeEfficacyAsAttack implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(typeTargetted, flags);
+        dest.writeParcelable(typeTargeted, flags);
         dest.writeInt(damage_factor);
         dest.writeInt(target_type_id);
     }

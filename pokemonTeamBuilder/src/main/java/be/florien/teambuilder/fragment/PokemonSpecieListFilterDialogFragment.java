@@ -41,10 +41,10 @@ public class PokemonSpecieListFilterDialogFragment extends DialogFragment {
     private static final String SAVE_SELECTED_FILTERS = "SAVE_SELECTED_FILTERS";
 
     public static class SpecieFilter implements Parcelable {
-        public Integer type1;
-        public Integer type2;
+        Integer type1;
+        Integer type2;
         public Integer generation;
-        public boolean mega;
+        boolean mega;
 
         //
         // public DBWhereImplementation getWhere() {
@@ -78,7 +78,7 @@ public class PokemonSpecieListFilterDialogFragment extends DialogFragment {
         // return where;
         // }
 
-        public SpecieFilter() {
+        SpecieFilter() {
         }
 
         private SpecieFilter(Parcel in) {
@@ -191,22 +191,20 @@ public class PokemonSpecieListFilterDialogFragment extends DialogFragment {
     }
 
     public interface SpecieListFilter {
-        public void setFilter(SpecieFilter filter);
+        void setFilter(SpecieFilter filter);
 
-        public SpecieFilter getFilter();
+        SpecieFilter getFilter();
     }
 
     private Spinner mTypeSpinner1;
     private Spinner mTypeSpinner2;
     private Spinner mGenerationSpinner;
     private CompoundButton mMegaButton;
-    private Button mOkButton;
 
     private SpecieFilter mFilter;
 
     public static PokemonSpecieListFilterDialogFragment newInstance() {
-        PokemonSpecieListFilterDialogFragment f = new PokemonSpecieListFilterDialogFragment();
-        return f;
+        return new PokemonSpecieListFilterDialogFragment();
     }
 
     public PokemonSpecieListFilterDialogFragment() {
@@ -251,7 +249,7 @@ public class PokemonSpecieListFilterDialogFragment extends DialogFragment {
         mTypeSpinner2 = (Spinner) v.findViewById(R.id.type_spinner2);
         mGenerationSpinner = (Spinner) v.findViewById(R.id.generation_spinner);
         mMegaButton = (CompoundButton) v.findViewById(R.id.mega_check);
-        mOkButton = (Button) v.findViewById(R.id.ok);
+        Button mOkButton = (Button) v.findViewById(R.id.ok);
         mOkButton.setOnClickListener(new OnClickListener() {
 
             @Override

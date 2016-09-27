@@ -9,7 +9,7 @@ import be.florien.joinorm.annotation.JoIgnore;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 
-@JoTable(isGeneratingWrite = false)
+@JoTable(tableName = "pokemon_moves", isGeneratingWrite = false)
 public class PokemonMoveForMove implements Parcelable {
 
     @JoId

@@ -11,6 +11,7 @@ import be.florien.teambuilder.model.table.GenerationTable;
 import be.florien.teambuilder.model.table.ItemTable;
 import be.florien.teambuilder.model.table.MachineTable;
 import be.florien.teambuilder.model.table.MoveDamageClassTable;
+import be.florien.teambuilder.model.table.MoveEffectTable;
 import be.florien.teambuilder.model.table.MoveMetaAilmentTable;
 import be.florien.teambuilder.model.table.MoveMetaTable;
 import be.florien.teambuilder.model.table.MoveTable;
@@ -29,7 +30,7 @@ public class MoveLoader extends AbstractAsyncTaskLoader<Move> {
     public Move loadInBackground() {
         MoveTable table = new MoveTable()
                 .selectAccuracy()
-//                .selectMoveEffects() todo ?
+                .selectMoveEffects(new MoveEffectTable())
                 .selectEffectChance()
                 .selectId()
                 .selectIdentifier()

@@ -9,7 +9,7 @@ import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 import be.florien.teambuilder.database.table.TranslationTableField;
 
-@JoTable(isGeneratingWrite = false)
+@JoTable(tableName = "items", isGeneratingWrite = false)
 public class Item implements Parcelable {
 
     @JoId

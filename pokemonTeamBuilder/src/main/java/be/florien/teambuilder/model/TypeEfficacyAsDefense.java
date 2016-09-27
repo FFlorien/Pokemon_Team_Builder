@@ -8,10 +8,10 @@ import be.florien.joinorm.annotation.JoId;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 
-@JoTable(isGeneratingWrite = false)
+@JoTable(tableName = "type_efficacy", isGeneratingWrite = false)
 public class TypeEfficacyAsDefense implements Parcelable {
 
-    @JoJoin
+    @JoJoin(isReferenceJoin = true, getTableRef = "damage_type_id", getAlias = "typeAttacking")
     public Type typeAttacking;
     public int damage_factor;
     @JoId

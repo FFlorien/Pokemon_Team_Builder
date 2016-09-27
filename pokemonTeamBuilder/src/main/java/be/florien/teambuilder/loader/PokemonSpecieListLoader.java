@@ -32,7 +32,7 @@ public class PokemonSpecieListLoader extends AbstractAsyncTaskLoader<List<Pokemo
                 .selectTypes(new TypeTableTmpForPokemon().selectId())
                 .selectPokemonForms(pokemonFormTable);
         PokemonSpecieTable specieTable = new PokemonSpecieTable().selectId().selectPokemonSpeciesNames(TranslationTableField.forPokemonSpecie())
-                /*.selectPokemon(pokemonTable)todo*/;
+                .selectPokemon(pokemonTable);
         if (mFilter != null) {
             mFilter.setFilter(pokemonTable, specieTable, pokemonFormTable);
         }

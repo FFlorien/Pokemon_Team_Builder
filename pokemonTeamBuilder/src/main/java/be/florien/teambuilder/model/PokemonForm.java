@@ -10,7 +10,7 @@ import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 import be.florien.teambuilder.database.table.TranslationTableField;
 
-@JoTable(isGeneratingWrite = false)
+@JoTable(tableName = "pokemon_forms", isGeneratingWrite = false)
 public class PokemonForm implements Parcelable {
 
     @JoId

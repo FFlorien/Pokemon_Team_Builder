@@ -14,7 +14,7 @@ import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 
-@JoTable(isGeneratingWrite = false)
+@JoTable(tableName = "pokemon", isGeneratingWrite = false)
 public class Pokemon implements Parcelable {
 
     @JoId
@@ -24,10 +24,9 @@ public class Pokemon implements Parcelable {
     public int weight;
     public int order;
     public int base_experience;
+    public List<String> abilities;
     @JoJoin(getTableRef = "pokemon_id")
     public List<PokemonForm> pokemon_forms;
-    @JoIgnore
-    public List<String> abilities;//todo
     @JoJoin(getTableClass = TypeTableTmpForPokemon.class)
     public List<Type> types;
     @JoJoin(getTableRef = "pokemon_id")

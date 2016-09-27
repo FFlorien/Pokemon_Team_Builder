@@ -28,9 +28,9 @@ public class PokemonSpecieLoader extends AbstractAsyncTaskLoader<PokemonSpecie> 
     public PokemonSpecie loadInBackground() {
         DBTableQueryHelper<PokemonSpecie> dataQueryHelper = new DBTableQueryHelper<>(getContext());
         PokemonSpecieTable table = new PokemonSpecieTable().selectId().selectPokemonSpeciesNames(TranslationTableField.forPokemonSpecie())
-                /*.selectPokemon(new PokemonTable().selectId()
+                .selectPokemon(new PokemonTable().selectId()
                         .selectTypes(new TypeTableTmpForPokemon().selectId().selectName())
-                        .selectForm(new PokemonFormTable().selectId().selectName()))todo*/;
+                        .selectPokemonForms(new PokemonFormTable().selectId().selectPokemonFormNames(TranslationTableField.forPokemonForm())));
         table.addWhere(new WhereStatement(PokemonSpecieTable.COLUMN_ID, mId));
         return dataQueryHelper.query(table).get(0);
     }

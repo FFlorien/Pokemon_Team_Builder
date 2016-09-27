@@ -9,12 +9,11 @@ import be.florien.joinorm.annotation.JoIgnore;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 
-@JoTable
+@JoTable(tableName = "move_meta", isGeneratingWrite = false)
 public class MoveMeta implements Parcelable {
 
     @JoId
     public int move_id;
-    @JoId
     public int meta_category_id;
     public int meta_ailment_id;
     public int min_hits;

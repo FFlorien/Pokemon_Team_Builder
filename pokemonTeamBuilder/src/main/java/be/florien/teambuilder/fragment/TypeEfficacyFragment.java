@@ -228,7 +228,7 @@ public class TypeEfficacyFragment extends Fragment {
 
         if (mIsAttack) {
             for (TypeEfficacyAsAttack efficacy : mType0.attack) {
-                Type type = efficacy.typeTargetted;
+                Type type = efficacy.typeTargeted;
 
                 putTypeInCategory(type, efficacy.damage_factor);
             }

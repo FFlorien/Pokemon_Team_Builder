@@ -37,7 +37,7 @@ public class TypeLoader extends AbstractAsyncTaskLoader<Type> {
                                         .selectTypeAttacking(new TypeTable().selectId())
                         );
         table.addWhere(new WhereStatement(TypeTableTmpForPokemon.COLUMN_TYPE_ID, String.valueOf(mId)));
-        DBTableQueryHelper<Type> queryHelper = new DBTableQueryHelper<Type>(getContext());
+        DBTableQueryHelper<Type> queryHelper = new DBTableQueryHelper<>(getContext());
         List<Type> list = queryHelper.query(table);
         if (list.size() > 0) {
             return list.get(0);

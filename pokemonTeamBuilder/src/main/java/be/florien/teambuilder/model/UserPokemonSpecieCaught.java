@@ -8,7 +8,7 @@ import be.florien.joinorm.annotation.JoId;
 import be.florien.joinorm.annotation.JoIgnore;
 import be.florien.joinorm.annotation.JoTable;
 
-@JoTable
+@JoTable(tableName = "pokemon_specie_caught")
 public class UserPokemonSpecieCaught implements Parcelable {
 
     @JoId

@@ -27,7 +27,7 @@ public class TypeTableTmpForPokemon extends DBTable<Type> {
     @JoCustomJoin(getParams = "this, (TypeTableTmpForPokemon) innerTable", getTableFor = be.florien.teambuilder.model.table.PokemonTable.class)
     public String getTypeJoin(be.florien.teambuilder.model.table.PokemonTable tablePokemon, be.florien.teambuilder.database.table.TypeTableTmpForPokemon field) {
         return "JOIN pokemon_types ON " + tablePokemon.getDataName() + "." + tablePokemon.getId() + " = pokemon_types.pokemon_id" +
-                " JOIN " + field.getDataName() + " ON " + field.getDataName() + ".id = pokemon_types.types_id";
+                " JOIN " + field.getDataName() + " ON " + field.getDataName() + ".id = pokemon_types.type_id";
     }
 
     @Override
@@ -65,9 +65,9 @@ public class TypeTableTmpForPokemon extends DBTable<Type> {
         }else if(field instanceof TranslationTableField){
             return ((TranslationTableField)field).getJoinToTranslatedTable(getDataName() + "." + getId());
         }else if(field instanceof TypeEfficacyAsAttackTable){
-            return getJoinOnId(field, "damage_type", false);
+            return getJoinOnId(field, "damage_type_id", false);
         }else if(field instanceof TypeEfficacyAsDefenseTable){
-            return getJoinOnId(field, "target_type", false);
+            return getJoinOnId(field, "target_type_id", false);
         }
         return "";
     }

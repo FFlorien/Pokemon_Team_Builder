@@ -7,14 +7,12 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.florien.joinorm.annotation.JoCustomJoin;
 import be.florien.joinorm.annotation.JoId;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 import be.florien.teambuilder.database.table.TranslationTableField;
-import be.florien.teambuilder.model.table.PokemonTable;
 
-@JoTable(isGeneratingWrite = false)
+@JoTable(tableName = "types", isGeneratingWrite = false)
 public class Type implements Parcelable {
 
     @JoId
@@ -24,9 +22,9 @@ public class Type implements Parcelable {
     public DualStringTranslation type_names;
     @JoJoin
     public Generation generations;
-    @JoJoin
+    @JoJoin(getTableRef = "damage_type_id", getAlias = "attack")
     public List<TypeEfficacyAsAttack> attack;
-    @JoJoin
+    @JoJoin(getTableRef = "target_type_id", getAlias = "defense")
     public List<TypeEfficacyAsDefense> defense;
 
     public Type() {

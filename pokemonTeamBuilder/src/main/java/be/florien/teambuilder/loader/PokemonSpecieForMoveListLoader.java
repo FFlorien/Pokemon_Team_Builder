@@ -39,8 +39,8 @@ public class PokemonSpecieForMoveListLoader extends AbstractAsyncTaskLoader<List
                 .selectTypes(typeTable)
                 .selectPokemonForms(pokemonFormTable)
                 .selectPokemonMoves(pokemonMoveForPokemonTable);
-        PokemonSpecieTable table = new PokemonSpecieTable().selectId().selectPokemonSpeciesNames(TranslationTableField.forPokemonSpecie())/*.select(
-                pokemonTable)todo*/;
+        PokemonSpecieTable table = new PokemonSpecieTable().selectId().selectPokemonSpeciesNames(TranslationTableField.forPokemonSpecie()).selectPokemon(
+                pokemonTable);
         if (mFilter != null) {
             mFilter.setFilter(pokemonTable, table, pokemonFormTable);
         }
