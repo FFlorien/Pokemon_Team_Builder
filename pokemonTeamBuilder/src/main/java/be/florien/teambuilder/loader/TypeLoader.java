@@ -31,7 +31,7 @@ public class TypeLoader extends AbstractAsyncTaskLoader<Type> {
                         .selectName()
                         .selectTypeEfficacityAsAttack(
                                 new TypeEfficacyAsAttackTable().selectId().selectDamageFactor()
-                                        .selectTypeTargetted(new TypeTable().selectId()))
+                                        .selectTypeTargeted(new TypeTable().selectId()))
                         .selectTypeEfficacityAsDefense(
                                 new TypeEfficacyAsDefenseTable().selectId().selectDamageFactor()
                                         .selectTypeAttacking(new TypeTable().selectId())
