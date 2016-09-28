@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 import be.florien.teambuilder.database.table.TranslationTableField;
@@ -41,6 +42,7 @@ public class Type implements Parcelable {
         in.readTypedList(defense, TypeEfficacyAsDefense.CREATOR);
     }
 
+    @JoIgnore
     public static final Parcelable.Creator<Type> CREATOR = new Parcelable.Creator<Type>() {
         public Type createFromParcel(Parcel in) {
             return new Type(in);

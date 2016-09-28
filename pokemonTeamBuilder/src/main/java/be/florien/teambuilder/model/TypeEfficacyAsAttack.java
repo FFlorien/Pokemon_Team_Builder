@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import be.florien.joinorm.annotation.JoId;
+import be.florien.joinorm.annotation.JoIgnore;
 import be.florien.joinorm.annotation.JoJoin;
 import be.florien.joinorm.annotation.JoTable;
 
@@ -25,6 +26,7 @@ public class TypeEfficacyAsAttack implements Parcelable {
         target_type_id = in.readInt();
     }
 
+    @JoIgnore
     public static final Parcelable.Creator<TypeEfficacyAsAttack> CREATOR = new Parcelable.Creator<TypeEfficacyAsAttack>() {
         public TypeEfficacyAsAttack createFromParcel(Parcel in) {
             return new TypeEfficacyAsAttack(in);
