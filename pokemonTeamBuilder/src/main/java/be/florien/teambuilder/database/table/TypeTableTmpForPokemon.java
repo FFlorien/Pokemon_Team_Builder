@@ -1,11 +1,15 @@
 
 package be.florien.teambuilder.database.table;
 
+import java.util.Collections;
+import java.util.List;
+
 import be.florien.joinorm.annotation.JoCustomJoin;
 import be.florien.joinorm.architecture.DBTable;
-import be.florien.teambuilder.model.table.*;
 import be.florien.teambuilder.model.Type;
 import be.florien.teambuilder.model.table.GenerationTable;
+import be.florien.teambuilder.model.table.TypeEfficacyAsAttackTable;
+import be.florien.teambuilder.model.table.TypeEfficacyAsDefenseTable;
 
 public class TypeTableTmpForPokemon extends DBTable<Type> {
 
@@ -61,20 +65,20 @@ public class TypeTableTmpForPokemon extends DBTable<Type> {
     @Override
     public String getJoinToInnerTable(DBTable<?> field) {
         if (field instanceof GenerationTable) {
-            return getJoinOnRef(field, COLUMN_TYPE_GENERATION_ID, false);
+            return getJoinOnRef(field, false, COLUMN_TYPE_GENERATION_ID);
         }else if(field instanceof TranslationTableField){
-            return ((TranslationTableField)field).getJoinToTranslatedTable(getDataName() + "." + getId());
+            return ((TranslationTableField)field).getJoinToTranslatedTable(getCompleteId().get(0));
         }else if(field instanceof TypeEfficacyAsAttackTable){
-            return getJoinOnId(field, "damage_type_id", false);
+            return getJoinOnId(field, false, "damage_type_id");
         }else if(field instanceof TypeEfficacyAsDefenseTable){
-            return getJoinOnId(field, "target_type_id", false);
+            return getJoinOnId(field, false, "target_type_id");
         }
         return "";
     }
 
     @Override
-    public String getId() {
-        return COLUMN_TYPE_ID;
+    public List<String> getId() {
+        return Collections.singletonList(COLUMN_TYPE_ID);
     }
 
     public TypeTableTmpForPokemon selectName() {

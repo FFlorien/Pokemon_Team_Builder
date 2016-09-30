@@ -1,6 +1,9 @@
 
 package be.florien.teambuilder.database.table;
 
+import java.util.Collections;
+import java.util.List;
+
 import be.florien.joinorm.architecture.DBTable;
 import be.florien.teambuilder.model.UserPokemonSpecieCaught;
 
@@ -36,8 +39,8 @@ public class UserPokemonSpecieCaughtTable extends DBTable<UserPokemonSpecieCaugh
     }
 
     @Override
-    public String getId() {
-        return COLUMN_ID;
+    public List<String> getId() {
+        return Collections.singletonList(COLUMN_ID);
     }
 
 }

@@ -39,7 +39,7 @@ public class DBUserQueryHelper<T> {
     public void insert(DBTable<T> table) {
         mDBHelper.getDatabase().beginTransaction();
         try {
-            List<DBWrite> write = new ArrayList<DBWrite>();
+            List<DBWrite> write = new ArrayList<>();
             table.getValuesToWrite(write, "");
             for (DBWrite toWrite : write) {
                 mDBHelper.getDatabase().insert(toWrite.getTableName(), null, toWrite.getValue());
@@ -56,9 +56,7 @@ public class DBUserQueryHelper<T> {
         try {
             List<DBDelete> deletes = table.getDelete();
             for (DBDelete delete : deletes) {
-                mDBHelper.getDatabase().delete(delete.getTableName(), delete.getWhereClause(), new String[] {
-                        delete.getWhereArgs()
-                });
+                mDBHelper.getDatabase().delete(delete.getTableName(), delete.getWhereClause(), (String[]) delete.getWhereArgs().toArray());
             }
             mDBHelper.getDatabase().setTransactionSuccessful();
         } finally {

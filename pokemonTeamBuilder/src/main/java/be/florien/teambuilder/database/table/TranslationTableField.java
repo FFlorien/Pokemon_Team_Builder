@@ -114,8 +114,8 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
     }
 
     @Override
-    public String getId() {
-        return mTranslationTableName + "." + mFieldIdName;
+    public List<String> getId() {
+        return Collections.singletonList(mTranslationTableName + "." + mFieldIdName);
     }
 
     //TODO use addWhere
