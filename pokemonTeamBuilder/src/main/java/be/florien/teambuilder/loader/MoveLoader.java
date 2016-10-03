@@ -30,7 +30,7 @@ public class MoveLoader extends AbstractAsyncTaskLoader<Move> {
     public Move loadInBackground() {
         MoveTable table = new MoveTable()
                 .selectAccuracy()
-                .selectMoveEffects(new MoveEffectTable())
+                .selectMoveEffects(new MoveEffectTable().selectMoveEffectProse(TranslationTableField.forMoveEffect()))
                 .selectEffectChance()
                 .selectId()
                 .selectIdentifier()

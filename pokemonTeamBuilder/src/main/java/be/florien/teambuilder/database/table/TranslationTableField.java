@@ -35,6 +35,10 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         return new TranslationTableField("move_names", "move_id", "name");
     }
 
+    public static TranslationTableField forMoveEffect() {
+        return new TranslationTableField("move_effect_prose", "move_effect_id", "short_effect", "effect");
+    }
+
     public static TranslationTableField forMoveDamageClass() {
         return new TranslationTableField("move_damage_class_prose", "move_damage_class_id", "name", "description");
     }
@@ -103,9 +107,9 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         mIncompleteTranslations.put("item_names", Arrays.asList(1, 5, 6, 7, 8, 10));
     }
 
-    @JoCustomJoin(getParams = "getDataName() + \".\" + getId()")
-    public String getJoinToTranslatedTable(String idOfTable){
-        return "LEFT JOIN " + mTranslationTableName + " ON " + mTranslationTableName + "." + mFieldIdName + " = " + idOfTable;
+    @JoCustomJoin(getParams = "getCompleteId()")
+    public String getJoinToTranslatedTable(List<String> idOfTable){
+        return "LEFT JOIN " + mTranslationTableName + " ON " + mTranslationTableName + "." + mFieldIdName + " = " + idOfTable.get(0);
     }
 
     @Override

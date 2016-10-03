@@ -5,7 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import be.florien.teambuilder.R;
@@ -13,7 +14,7 @@ import be.florien.teambuilder.activity.TopActivity.TopMenuItem;
 import be.florien.teambuilder.fragment.MoveDetailFragment;
 import be.florien.teambuilder.model.Move;
 
-public class MoveDetailActivity extends ActionBarActivity {
+public class MoveDetailActivity extends AppCompatActivity {
 
     private static final String ARG_INIT_MOVE = "ARG_INIT_MOVE";
 
@@ -27,15 +28,18 @@ public class MoveDetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_common);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setContentView(R.layout.activity_common);
         Move move = getIntent().getParcelableExtra(ARG_INIT_MOVE);
         MoveDetailFragment fragment = (MoveDetailFragment) getSupportFragmentManager().findFragmentByTag(MoveDetailFragment.class.getName());
         if (fragment == null) {
             fragment = MoveDetailFragment.newInstance(move);
         }
-        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment, MoveDetailFragment.class.getName()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment, MoveDetailFragment.class.getName()).commit();
     }
 
     @Override

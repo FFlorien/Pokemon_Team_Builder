@@ -7,7 +7,7 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.OnNavigationListener;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import be.florien.teambuilder.R;
 import be.florien.teambuilder.activity.MoveListForPokemonSpecieActivity;
@@ -24,8 +26,6 @@ import be.florien.teambuilder.model.Pokemon;
 import be.florien.teambuilder.model.PokemonSpecie;
 import be.florien.teambuilder.model.Type;
 import be.florien.teambuilder.model.TypeEnum;
-
-import java.util.ArrayList;
 
 public class PokemonSpecieDetailFragment extends Fragment implements OnNavigationListener {
 
@@ -117,7 +117,7 @@ public class PokemonSpecieDetailFragment extends Fragment implements OnNavigatio
      */
 
     private void setActionBarMenu() {
-        ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (mPokemonSpecie.pokemon.size() > 1) {
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);

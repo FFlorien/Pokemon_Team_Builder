@@ -5,14 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import be.florien.teambuilder.R;
 import be.florien.teambuilder.fragment.PokemonSpecieListForMoveFragment;
 import be.florien.teambuilder.model.Move;
 
-public class PokemonSpecieListForMoveActivity extends ActionBarActivity {
+public class PokemonSpecieListForMoveActivity extends AppCompatActivity {
 
     private static final String ARG_INIT_MOVE = "ARG_INIT_MOVE";
 
@@ -26,16 +27,19 @@ public class PokemonSpecieListForMoveActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_common);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setContentView(R.layout.activity_common);
         Move move = getIntent().getParcelableExtra(ARG_INIT_MOVE);
         PokemonSpecieListForMoveFragment fragment = (PokemonSpecieListForMoveFragment) getSupportFragmentManager().findFragmentByTag(
                 PokemonSpecieListForMoveFragment.class.getName());
         if (fragment == null) {
             fragment = PokemonSpecieListForMoveFragment.newInstance(move);
         }
-        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment, PokemonSpecieListForMoveFragment.class.getName()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment, PokemonSpecieListForMoveFragment.class.getName()).commit();
     }
 
     @Override

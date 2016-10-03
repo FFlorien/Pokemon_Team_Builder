@@ -67,7 +67,7 @@ public class TypeTableTmpForPokemon extends DBTable<Type> {
         if (field instanceof GenerationTable) {
             return getJoinOnRef(field, false, COLUMN_TYPE_GENERATION_ID);
         }else if(field instanceof TranslationTableField){
-            return ((TranslationTableField)field).getJoinToTranslatedTable(getCompleteId().get(0));
+            return ((TranslationTableField)field).getJoinToTranslatedTable(getCompleteId());
         }else if(field instanceof TypeEfficacyAsAttackTable){
             return getJoinOnId(field, false, "damage_type_id");
         }else if(field instanceof TypeEfficacyAsDefenseTable){

@@ -28,7 +28,7 @@ public class Move implements Comparable<Move>, Parcelable {
     //    public MoveTarget move_targets;
     @JoJoin(getTableRef = "generation_id", isReferenceJoin = true)
     public Generation generations;
-    @JoJoin(getTableRef = "types_id", isReferenceJoin = true)
+    @JoJoin(getTableRef = "type_id", isReferenceJoin = true)
     public Type types;
     @JoJoin(getTableRef = "damage_class_id", isReferenceJoin = true)
     public MoveDamageClass move_damage_classes;

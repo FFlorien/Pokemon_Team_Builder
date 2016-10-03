@@ -4,21 +4,21 @@ package be.florien.teambuilder.activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import be.florien.teambuilder.R;
@@ -26,7 +26,7 @@ import be.florien.teambuilder.fragment.MoveListFragment;
 import be.florien.teambuilder.fragment.PokemonSpecieListFragment;
 import be.florien.teambuilder.fragment.TypeListFragment;
 
-public class TopActivity extends ActionBarActivity {
+public class TopActivity extends AppCompatActivity {
 
     private static final String SAVED_MENUPOSITION = "SAVED_MENUPOSITION";
     public static final String UP_MENUPOSITION = "UP_MENUPOSITION";
@@ -36,33 +36,33 @@ public class TopActivity extends ActionBarActivity {
         MOVE(R.string.move_list_title, MoveListFragment.class),
         TYPE(R.string.type_list_title, TypeListFragment.class);
 
-        private int mNameRes;
-        private Class<? extends Fragment> mFragmentClass;
+        private int nameRes;
+        private Class<? extends Fragment> fragmentClass;
 
-        private TopMenuItem(int nameRes, Class<? extends Fragment> fragmentClass) {
-            mNameRes = nameRes;
-            mFragmentClass = fragmentClass;
+        TopMenuItem(int nameRes, Class<? extends Fragment> fragmentClass) {
+            this.nameRes = nameRes;
+            this.fragmentClass = fragmentClass;
         }
 
         public int getNameRes() {
-            return mNameRes;
+            return nameRes;
         }
 
         public Class<? extends Fragment> getFragmentClass() {
-            return mFragmentClass;
+            return fragmentClass;
         }
     }
 
-    private class MenuAdapter extends BaseAdapter {
+    private class MenuAdapter extends RecyclerView.Adapter<MenuItemHolder> {
 
         @Override
-        public int getCount() {
-            return TopMenuItem.values().length;
+        public MenuItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new MenuItemHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text, parent, false));
         }
 
         @Override
-        public Object getItem(int position) {
-            return TopMenuItem.values()[position];
+        public void onBindViewHolder(MenuItemHolder holder, int position) {
+            holder.setMenuItem(TopMenuItem.values()[position]);
         }
 
         @Override
@@ -71,41 +71,54 @@ public class TopActivity extends ActionBarActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text, parent, false);
-            }
-            TopMenuItem item = (TopMenuItem) getItem(position);
-            ((TextView) convertView).setText(item.getNameRes());
-            return convertView;
+        public int getItemCount() {
+            return TopMenuItem.values().length;
         }
 
     }
 
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
+    private class MenuItemHolder extends RecyclerView.ViewHolder {
 
-    private TopMenuItem mMenuSelected = TopMenuItem.values()[0];
+        TextView textView;
+        private TopMenuItem menuItem;
+
+        MenuItemHolder(View itemView) {
+            super(itemView);
+            textView = (TextView) itemView;
+        }
+
+        void setMenuItem(TopMenuItem menu) {
+            this.menuItem = menu;
+            textView.setText(menu.getNameRes());
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TopMenuItem oldItem = menuSelected;
+                    menuSelected = menuItem;
+                    drawerLayout.closeDrawer(drawerNavigation);
+                    setContentFragment(oldItem);
+                }
+            });
+        }
+    }
+
+    private DrawerLayout drawerLayout;
+    private RecyclerView drawerNavigation;
+    private ActionBarDrawerToggle drawerToggle;
+
+    private TopMenuItem menuSelected = TopMenuItem.values()[0];
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.drawer_list);
-        mDrawerList.setAdapter(new MenuAdapter());
-        mDrawerList.setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TopMenuItem oldItem = mMenuSelected;
-                mMenuSelected = (TopMenuItem) mDrawerList.getAdapter().getItem(position);
-                mDrawerLayout.closeDrawer(mDrawerList);
-                setContentFragment(oldItem);
-            }
-        });
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.choose_a_move, R.string.choose_a_specie) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerNavigation = (RecyclerView) findViewById(R.id.drawer_list);
+        drawerNavigation.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        drawerNavigation.setAdapter(new MenuAdapter());
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.choose_a_move, R.string.choose_a_specie) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -118,13 +131,19 @@ public class TopActivity extends ActionBarActivity {
             }
 
         };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        drawerLayout.addDrawerListener(drawerToggle);
+        ActionBar supportActionBar = getSupportActionBar();
+
+        if (supportActionBar == null) {
+            throw new IllegalStateException("No actionBar defined !");
+        }
+
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
+        supportActionBar.setHomeButtonEnabled(true);
 
         if (savedInstanceState != null) {
 
-            mMenuSelected = TopMenuItem.values()[savedInstanceState.getInt(SAVED_MENUPOSITION)];
+            menuSelected = TopMenuItem.values()[savedInstanceState.getInt(SAVED_MENUPOSITION)];
         } else {
             setContentFragment(null);
         }
@@ -137,8 +156,8 @@ public class TopActivity extends ActionBarActivity {
         int menuPosition = intent.getIntExtra(UP_MENUPOSITION, -1);
         Log.d("POKEMON", "Value of menuPosition: " + menuPosition);
         if (menuPosition != -1) {
-            TopMenuItem olditem = mMenuSelected;
-            mMenuSelected = TopMenuItem.values()[menuPosition];
+            TopMenuItem olditem = menuSelected;
+            menuSelected = TopMenuItem.values()[menuPosition];
             setContentFragment(olditem);
         }
     }
@@ -146,20 +165,20 @@ public class TopActivity extends ActionBarActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(SAVED_MENUPOSITION, mMenuSelected.ordinal());
+        outState.putInt(SAVED_MENUPOSITION, menuSelected.ordinal());
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
+        drawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -172,7 +191,7 @@ public class TopActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Pass the event to ActionBarDrawerToggle, if it returns
         // true, then it has handled the app icon touch event
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         // Handle your other action bar items...
@@ -189,11 +208,11 @@ public class TopActivity extends ActionBarActivity {
         if (oldItem != null) {
             transaction.detach(getSupportFragmentManager().findFragmentByTag(oldItem.getFragmentClass().getName()));
         }
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(mMenuSelected.getFragmentClass().getName());
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(menuSelected.getFragmentClass().getName());
         if (fragment == null) {
             try {
-                fragment = mMenuSelected.getFragmentClass().newInstance();
-                transaction.add(R.id.drawer_content, fragment, mMenuSelected.getFragmentClass().getName());
+                fragment = menuSelected.getFragmentClass().newInstance();
+                transaction.add(R.id.drawer_content, fragment, menuSelected.getFragmentClass().getName());
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {

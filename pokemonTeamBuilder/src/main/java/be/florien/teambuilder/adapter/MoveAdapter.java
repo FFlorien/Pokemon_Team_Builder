@@ -72,9 +72,9 @@ public class MoveAdapter extends AbstractBaseAdapter<Move> implements SectionInd
         type_sticker.getBackground().setColorFilter(TypeEnum.getColorFilter(move.types.id, parent.getContext()));
         type_sticker.setText(move.types.type_names.first);
         name.setText(move.move_names.first);
-        if (move.move_meta.move_meta_ailments.id > 0) {
+        if (move.move_meta.meta_ailment_id > 0) {
             ailment.setVisibility(View.VISIBLE);
-            ailment.setImageResource(MoveMetaAilmentClassEnum.getDrawableRes(move.move_meta.move_meta_ailments.id));
+            ailment.setImageResource(MoveMetaAilmentClassEnum.getDrawableRes(move.move_meta.meta_ailment_id));
         } else {
             ailment.setVisibility(View.GONE);
         }

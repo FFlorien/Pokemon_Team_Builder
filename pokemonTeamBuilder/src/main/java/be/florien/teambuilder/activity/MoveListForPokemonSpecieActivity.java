@@ -5,14 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import be.florien.teambuilder.R;
 import be.florien.teambuilder.fragment.MoveListForPokemonSpecieFragment;
 import be.florien.teambuilder.model.Pokemon;
 
-public class MoveListForPokemonSpecieActivity extends ActionBarActivity {
+public class MoveListForPokemonSpecieActivity extends AppCompatActivity {
 
     private static final String ARG_INIT_POKEMON = "ARG_INIT_POKEMON";
     private static final String ARG_INIT_POKEMON_NAME = "ARG_INIT_POKEMON_NAME";
@@ -28,16 +29,19 @@ public class MoveListForPokemonSpecieActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_common);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setContentView(R.layout.activity_common);
         Pokemon pokemon = getIntent().getParcelableExtra(ARG_INIT_POKEMON);
         String name = getIntent().getStringExtra(ARG_INIT_POKEMON_NAME);
         MoveListForPokemonSpecieFragment fragment = (MoveListForPokemonSpecieFragment) getSupportFragmentManager().findFragmentByTag(MoveListForPokemonSpecieFragment.class.getName());
         if (fragment == null) {
             fragment = MoveListForPokemonSpecieFragment.newInstance(pokemon, name);
         }
-        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment, MoveListForPokemonSpecieFragment.class.getName()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment, MoveListForPokemonSpecieFragment.class.getName()).commit();
     }
 
     @Override
