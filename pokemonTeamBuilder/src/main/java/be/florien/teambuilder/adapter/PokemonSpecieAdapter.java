@@ -20,7 +20,7 @@ public class PokemonSpecieAdapter extends AbsPokemonSpecieAdapter {
     private List<Integer> mCatched;
 
     public void setCatched(List<UserPokemonSpecieCaught> catched) {
-        mCatched = new ArrayList<Integer>();
+        mCatched = new ArrayList<>();
         for (UserPokemonSpecieCaught pkmnCatched : catched) {
             mCatched.add(pkmnCatched.id);
         }

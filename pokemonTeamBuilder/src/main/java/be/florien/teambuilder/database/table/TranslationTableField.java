@@ -57,7 +57,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
 
     public TranslationTableField(String tableName, String fieldIdName, String translationFieldName) {
         super(tableName, DualStringTranslation.class);
-        mDataName = tableName;
+        dataName = tableName;
         mTranslationTableName = tableName;
         mFieldIdName = fieldIdName;
         selectId();
@@ -66,7 +66,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
 
     public TranslationTableField(String tableName, String fieldIdName, String translationFieldName, String translationFieldName2) {
         super(tableName, DualStringTranslation.class);
-        mDataName = tableName;
+        dataName = tableName;
         mTranslationTableName = tableName;
         mFieldIdName = fieldIdName;
         selectId();
@@ -167,12 +167,12 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         // Log.d("POKEMON", mTableName + ".getFieldToSet("+ fieldToSet.getFieldName() + ") / mCurrent == " + mCurrentObject.id + " - " +
         // mCurrentObject.first + " - " + mCurrentObject.second);
         if (fieldToSet instanceof IntField) {
-            field = mClass.getField("id");
+            field = modelClass.getField("id");
         } else if (!mIsFirstParsed) {
             mIsFirstParsed = true;
-            field = mClass.getField("first");
+            field = modelClass.getField("first");
         } else {
-            field = mClass.getField("second");
+            field = modelClass.getField("second");
         }
         return field;
     }
