@@ -17,7 +17,7 @@ public class PokemonSpecieForMoveAdapter extends AbsPokemonSpecieAdapter {
 
     @Override
     public int getCount() {
-        return (mTypes == null ? 0 : super.getCount());
+        return (types == null ? 0 : super.getCount());
     }
 
     protected void setSpecialContent(View convertView, PokemonSpecie specie) {

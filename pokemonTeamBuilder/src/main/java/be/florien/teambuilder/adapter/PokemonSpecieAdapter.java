@@ -17,19 +17,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PokemonSpecieAdapter extends AbsPokemonSpecieAdapter {
-    private List<Integer> mCatched;
+    private List<Integer> caught;
 
-    public void setCatched(List<UserPokemonSpecieCaught> catched) {
-        mCatched = new ArrayList<>();
-        for (UserPokemonSpecieCaught pkmnCatched : catched) {
-            mCatched.add(pkmnCatched.id);
+    public void setCaught(List<UserPokemonSpecieCaught> caught) {
+        this.caught = new ArrayList<>();
+        for (UserPokemonSpecieCaught pokemonCaught : caught) {
+            this.caught.add(pokemonCaught.id);
         }
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return (mTypes == null || mCatched == null ? 0 : super.getCount());
+        return (types == null || caught == null ? 0 : super.getCount());
     }
 
     protected void setSpecialContent(View convertView, PokemonSpecie specie) {
@@ -43,7 +43,7 @@ public class PokemonSpecieAdapter extends AbsPokemonSpecieAdapter {
         }
         Drawable sprite = convertView.getContext().getResources().getDrawable(identifier);
 
-        if (!mCatched.contains(specie.id)) {
+        if (!caught.contains(specie.id)) {
             PorterDuffColorFilter filter = new PorterDuffColorFilter(convertView.getContext().getResources().getColor(R.color.grey),
                     Mode.SRC_ATOP);
             sprite.setColorFilter(filter);
@@ -58,6 +58,6 @@ public class PokemonSpecieAdapter extends AbsPokemonSpecieAdapter {
 
     public boolean isPokemonCatched(int position) {
         PokemonSpecie specie = getItem(position);
-        return mCatched.contains(specie.id);
+        return caught.contains(specie.id);
     }
 }

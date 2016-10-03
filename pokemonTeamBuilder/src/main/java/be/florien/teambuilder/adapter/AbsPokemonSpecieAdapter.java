@@ -26,14 +26,14 @@ import be.florien.teambuilder.model.Type;
 import be.florien.teambuilder.model.TypeEnum;
 
 abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<PokemonSpecie> implements SectionIndexer {
-    private HashMap<String, Integer> mIndexer;
-    private String[] mSections;
-    SparseArray<Type> mTypes;
+    private HashMap<String, Integer> indexer;
+    private String[] sections;
+    SparseArray<Type> types;
 
     public void setTypes(List<Type> types) {
-        mTypes = new SparseArray<>();
+        this.types = new SparseArray<>();
         for (Type type : types) {
-            mTypes.put(type.id, type);
+            this.types.put(type.id, type);
         }
         notifyDataSetChanged();
     }
@@ -43,7 +43,7 @@ abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<PokemonSpecie
             super.setItems(null);
             return;
         }
-        mIndexer = new HashMap<>(); // stores the positions for the start of each letter
+        indexer = new HashMap<>(); // stores the positions for the start of each letter
 
         int size = items.size();
         for (int i = size - 1; i >= 0; i--) {
@@ -51,9 +51,9 @@ abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<PokemonSpecie
             int j = pokemonSpecie.id / 10;
             String element = String.format(Locale.US, "%02d0", j);
             // We store the first letter of the word, and its index.
-            mIndexer.put(element, i);
+            indexer.put(element, i);
         }
-        Set<String> keys = mIndexer.keySet(); // set of letters
+        Set<String> keys = indexer.keySet(); // set of letters
 
         Iterator<String> keyIt = keys.iterator();
         ArrayList<String> keyList = new ArrayList<>();
@@ -63,8 +63,8 @@ abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<PokemonSpecie
             keyList.add(key);
         }
         Collections.sort(keyList);// sort the keylist
-        mSections = new String[keyList.size()]; // simple conversion to array
-        keyList.toArray(mSections);
+        sections = new String[keyList.size()]; // simple conversion to array
+        keyList.toArray(sections);
         super.setItems(items);
     }
 
@@ -146,11 +146,11 @@ abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<PokemonSpecie
         TextView name = ViewHolder.get(convertView, R.id.name);
 
         typeSticker1.getBackground().setColorFilter(TypeEnum.getColorFilter(pokemon.types.get(0).id, parent.getContext()));
-        typeSticker1.setText(mTypes.get(pokemon.types.get(0).id).type_names.first);
+        typeSticker1.setText(types.get(pokemon.types.get(0).id).type_names.first);
         if (pokemon.types.size() > 1) {
             typeSticker2.setVisibility(View.VISIBLE);
             typeSticker2.getBackground().setColorFilter(TypeEnum.getColorFilter(pokemon.types.get(1).id, parent.getContext()));
-            typeSticker2.setText(mTypes.get(pokemon.types.get(1).id).type_names.first);
+            typeSticker2.setText(types.get(pokemon.types.get(1).id).type_names.first);
         } else {
             typeSticker2.setVisibility(View.GONE);
         }
@@ -162,8 +162,8 @@ abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<PokemonSpecie
 
     @Override
     public int getPositionForSection(int sectionIndex) {
-        String letter = mSections[sectionIndex];
-        return mIndexer.get(letter);
+        String letter = sections[sectionIndex];
+        return indexer.get(letter);
     }
 
     @Override
@@ -173,7 +173,7 @@ abstract class AbsPokemonSpecieAdapter extends AbstractBaseAdapter<PokemonSpecie
 
     @Override
     public Object[] getSections() {
-        return mSections; // to string will be called to display the letter
+        return sections; // to string will be called to display the letter
     }
 
     @Override

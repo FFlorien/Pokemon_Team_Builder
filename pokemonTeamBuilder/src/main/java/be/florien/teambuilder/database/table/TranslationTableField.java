@@ -90,7 +90,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         mCompleteTranslations.put("move_meta_ailment", Collections.singletonList(9));
         mCompleteTranslations.put("move_names", Arrays.asList(1, 5, 9));
         mCompleteTranslations.put("pokemon_form_names", Arrays.asList(5, 9));
-        mCompleteTranslations.put("pokemon_specie_names", Arrays.asList(1, 5, 6, 9));
+        mCompleteTranslations.put("pokemon_species_names", Arrays.asList(1, 5, 6, 9));
         mCompleteTranslations.put(TypeTableTmpForPokemon.TABLE_LANGUAGE_NAME, Collections.singletonList(9));
         mCompleteTranslations.put("item_names", Collections.singletonList(9));
     }
@@ -102,7 +102,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         mIncompleteTranslations.put("move_effect_names", Collections.singletonList(10));
         mIncompleteTranslations.put("move_meta_ailment_names", Collections.singletonList(10));
         mIncompleteTranslations.put("move_names", Arrays.asList(6, 7, 8, 10));
-        mIncompleteTranslations.put("pokemon_specie_names", Arrays.asList(2, 3, 4, 10));
+        mIncompleteTranslations.put("pokemon_species_names", Arrays.asList(2, 3, 4, 10));
         mIncompleteTranslations.put(TypeTableTmpForPokemon.TABLE_LANGUAGE_NAME, Arrays.asList(1, 5, 6, 7, 8, 10));
         mIncompleteTranslations.put("item_names", Arrays.asList(1, 5, 6, 7, 8, 10));
     }

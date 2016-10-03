@@ -355,7 +355,7 @@ public class PokemonSpecieListFragment extends ListFragment implements SpecieLis
 
         @Override
         public void onLoadFinished(Loader<List<UserPokemonSpecieCaught>> loader, List<UserPokemonSpecieCaught> catched) {
-            mAdapter.setCatched(catched);
+            mAdapter.setCaught(catched);
         }
 
         @Override
