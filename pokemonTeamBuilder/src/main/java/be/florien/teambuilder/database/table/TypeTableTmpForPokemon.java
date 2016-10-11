@@ -6,7 +6,11 @@ import java.util.List;
 
 import be.florien.joinorm.annotation.JoCustomJoin;
 import be.florien.joinorm.architecture.DBTable;
+import be.florien.teambuilder.model.DualStringTranslation;
+import be.florien.teambuilder.model.Generation;
 import be.florien.teambuilder.model.Type;
+import be.florien.teambuilder.model.TypeEfficacyAsAttack;
+import be.florien.teambuilder.model.TypeEfficacyAsDefense;
 import be.florien.teambuilder.model.table.GenerationTable;
 import be.florien.teambuilder.model.table.TypeEfficacyAsAttackTable;
 import be.florien.teambuilder.model.table.TypeEfficacyAsDefenseTable;
@@ -25,13 +29,18 @@ public class TypeTableTmpForPokemon extends DBTable<Type> {
     private static final String COLUMN_LANGUAGE_NAME = "name";
 
     public TypeTableTmpForPokemon() {
-        super(TABLE_NAME, Type.class);
+        super(TABLE_NAME);
     }
 
     @JoCustomJoin(getParams = "this, (TypeTableTmpForPokemon) innerTable", getTableFor = be.florien.teambuilder.model.table.PokemonTable.class)
     public String getTypeJoin(be.florien.teambuilder.model.table.PokemonTable tablePokemon, be.florien.teambuilder.database.table.TypeTableTmpForPokemon field) {
         return "JOIN pokemon_types ON " + tablePokemon.getDataName() + "." + tablePokemon.getId() + " = pokemon_types.pokemon_id" +
                 " JOIN " + field.getDataName() + " ON " + field.getDataName() + ".id = pokemon_types.type_id";
+    }
+
+    @Override
+    protected Type createNewInstance() {
+        return new Type();
     }
 
     @Override
@@ -74,6 +83,41 @@ public class TypeTableTmpForPokemon extends DBTable<Type> {
             return getJoinOnId(field, false, "target_type_id");
         }
         return "";
+    }
+
+    @Override
+    public void setFieldValue(String fieldName, Object value) {
+        if ("id".equals(fieldName)) {
+            currentObject.id = (int) value;
+        } else if ("identifier".equals(fieldName)) {
+            currentObject.identifier = (String) value;
+        } else if ("attack".equals(fieldName)) {
+            currentObject.attack = (List<TypeEfficacyAsAttack>) value;
+        } else if ("defense".equals(fieldName)) {
+            currentObject.defense = (List<TypeEfficacyAsDefense>) value;
+        } else if ("generations".equals(fieldName)) {
+            currentObject.generations = (Generation) value;
+        } else if ("type_names".equals(fieldName)) {
+            currentObject.type_names = (DualStringTranslation) value;
+        }
+    }
+
+    @Override
+    public Object getFieldValue(String fieldName) {
+        if ("id".equals(fieldName)) {
+            return currentObject.id;
+        } else if ("identifier".equals(fieldName)) {
+            return  currentObject.identifier;
+        } else if ("attack".equals(fieldName)) {
+            return currentObject.attack;
+        } else if ("defense".equals(fieldName)) {
+            return currentObject.defense;
+        } else if ("generations".equals(fieldName)) {
+            return currentObject.generations;
+        } else if ("type_names".equals(fieldName)) {
+            return currentObject.type_names;
+        }
+        return null;
     }
 
     @Override

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Pokemon Team Builder</string>
+    <string name="app_name">Pokemon Team Builder JoinOrm</string>
     <string name="power">Puissance: &lt;b>%1$d&lt;/b></string>
     <string name="pp">PP: &lt;b>%1$d&lt;/b></string>
     <string name="all">Tous</string>

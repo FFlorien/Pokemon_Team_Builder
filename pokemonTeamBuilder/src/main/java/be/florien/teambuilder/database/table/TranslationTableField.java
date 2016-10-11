@@ -1,19 +1,16 @@
 
 package be.florien.teambuilder.database.table;
 
-import be.florien.joinorm.annotation.JoCustomJoin;
-import be.florien.joinorm.architecture.DBData;
-import be.florien.joinorm.architecture.DBTable;
-import be.florien.joinorm.architecture.WhereStatement;
-import be.florien.joinorm.primitivefield.IntField;
-import be.florien.teambuilder.appconfiguration.Constant;
-import be.florien.teambuilder.model.DualStringTranslation;
-
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
+import be.florien.joinorm.annotation.JoCustomJoin;
+import be.florien.joinorm.architecture.DBTable;
+import be.florien.joinorm.architecture.WhereStatement;
+import be.florien.teambuilder.appconfiguration.Constant;
+import be.florien.teambuilder.model.DualStringTranslation;
 
 public class TranslationTableField extends DBTable<DualStringTranslation> {
 
@@ -60,7 +57,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
     }
 
     public TranslationTableField(String tableName, String fieldIdName, String translationFieldName) {
-        super(tableName, DualStringTranslation.class);
+        super(tableName);
         dataName = tableName;
         mTranslationTableName = tableName;
         mFieldIdName = fieldIdName;
@@ -69,7 +66,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
     }
 
     public TranslationTableField(String tableName, String fieldIdName, String translationFieldName, String translationFieldName2) {
-        super(tableName, DualStringTranslation.class);
+        super(tableName);
         dataName = tableName;
         mTranslationTableName = tableName;
         mFieldIdName = fieldIdName;
@@ -77,6 +74,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         selectString(translationFieldName);
         selectString(translationFieldName2);
     }
+
     private String mTranslationTableName;
     private String mFieldIdName;
     private boolean mIsFirstParsed = false;
@@ -108,7 +106,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
     }
 
     @JoCustomJoin(getParams = "getCompleteId()")
-    public String getJoinToTranslatedTable(List<String> idOfTable){
+    public String getJoinToTranslatedTable(List<String> idOfTable) {
         return "LEFT JOIN " + mTranslationTableName + " ON " + mTranslationTableName + "." + mFieldIdName + " = " + idOfTable.get(0);
     }
 
@@ -136,7 +134,7 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
         } else {
             selection = "9";
         }
-        return "(" +mTranslationTableName + ".local_language_id IN (" + selection + ") OR " +mTranslationTableName + ".local_language_id IS NULL)";
+        return "(" + mTranslationTableName + ".local_language_id IN (" + selection + ") OR " + mTranslationTableName + ".local_language_id IS NULL)";
     }
 
     @Override
@@ -154,6 +152,36 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
     }
 
     @Override
+    public void setFieldValue(String fieldName, Object value) {
+        if (value instanceof String && !mIsFirstParsed) {
+            mIsFirstParsed = true;
+            currentObject.first = (String) value;
+        } else if (value instanceof String) {
+            currentObject.second = (String) value;
+        } else if (value instanceof Integer)  {
+            currentObject.id = (int) value;
+        }
+    }
+
+    @Override
+    public Object getFieldValue(String fieldName) {
+        if (fieldName.contains("id")) {
+            return currentObject.id;
+        } else if ("first".equals(fieldName)) {
+            return currentObject.first;
+        } else if ("second".equals(fieldName)) {
+            return currentObject.second;
+        }
+
+        return null;
+    }
+
+    @Override
+    protected DualStringTranslation createNewInstance() {
+        return new DualStringTranslation();
+    }
+
+    @Override
     public TranslationTableField selectId() {
         selectId("local_language_id");
         return this;
@@ -163,21 +191,5 @@ public class TranslationTableField extends DBTable<DualStringTranslation> {
     public void reset() {
         super.reset();
         mIsFirstParsed = false;
-    }
-
-    @Override
-    protected Field getFieldToSet(DBData<?> fieldToSet) throws NoSuchFieldException {
-        Field field;
-        // Log.d("POKEMON", mTableName + ".getFieldToSet("+ fieldToSet.getFieldName() + ") / mCurrent == " + mCurrentObject.id + " - " +
-        // mCurrentObject.first + " - " + mCurrentObject.second);
-        if (fieldToSet instanceof IntField) {
-            field = modelClass.getField("id");
-        } else if (!mIsFirstParsed) {
-            mIsFirstParsed = true;
-            field = modelClass.getField("first");
-        } else {
-            field = modelClass.getField("second");
-        }
-        return field;
     }
 }

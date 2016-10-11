@@ -3,6 +3,7 @@ package be.florien.teambuilder.database.helper;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
@@ -26,7 +27,8 @@ public class DBTableQueryHelper<T> {
             Cursor cursor = query.query(mDBHelper.getDatabase(), table.getProjection(), table.getWhere(), null, null, null, table.getOrderBy());
             Log.d("POKEMON",
                     query.buildQuery(table.getProjection(), table.getWhere(), null, null, null, table.getOrderBy(), null));
-            return table.getResult(cursor);
+            List<T> result = table.getResult(cursor);
+            return result;
         } finally {
             mDBHelper.close();
         }

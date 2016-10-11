@@ -14,7 +14,12 @@ public class UserPokemonSpecieCaughtTable extends DBTable<UserPokemonSpecieCaugh
     public static final String COLUMN_ID = "id";
 
     public UserPokemonSpecieCaughtTable() {
-        super(TABLE_NAME, UserPokemonSpecieCaught.class);
+        super(TABLE_NAME);
+    }
+
+    @Override
+    protected UserPokemonSpecieCaught createNewInstance() {
+        return new UserPokemonSpecieCaught();
     }
 
     @Override
@@ -36,6 +41,18 @@ public class UserPokemonSpecieCaughtTable extends DBTable<UserPokemonSpecieCaugh
     @Override
     public String getJoinToInnerTable(DBTable<?> field) {
         return "";
+    }
+
+    @Override
+    public void setFieldValue(String fieldName, Object value) {
+        if ("id".equals(fieldName)) {
+            currentObject.id = (int) value;
+        }
+    }
+
+    @Override
+    public Object getFieldValue(String fieldName) {
+        return currentObject.id;
     }
 
     @Override

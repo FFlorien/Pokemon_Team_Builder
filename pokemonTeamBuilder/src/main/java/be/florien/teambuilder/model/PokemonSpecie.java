@@ -43,7 +43,7 @@ public class PokemonSpecie implements Parcelable {
     }
 
     private PokemonSpecie(Parcel in) {
-        pokemon = new ArrayList<Pokemon>();
+        pokemon = new ArrayList<>();
         id = in.readInt();
         in.readTypedList(pokemon, Pokemon.CREATOR);
         identifier = in.readString();
