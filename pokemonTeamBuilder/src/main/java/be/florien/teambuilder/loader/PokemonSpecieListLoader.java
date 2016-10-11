@@ -30,7 +30,7 @@ public class PokemonSpecieListLoader extends AbstractAsyncTaskLoader<List<Pokemo
         DBTableQueryHelper<PokemonSpecie> dataQueryHelper = new DBTableQueryHelper<>(getContext());
         PokemonFormTable pokemonFormTable = new PokemonFormTable().selectId().selectPokemonFormNames(TranslationTableField.forPokemonForm());
         PokemonTable pokemonTable = new PokemonTable().selectId()
-                .selectTypes(new TypeTableTmpForPokemon().selectId().selectName())
+                .selectTypes(new TypeTableTmpForPokemon().selectId())
                 .selectPokemonForms(pokemonFormTable);
         PokemonSpecieTable specieTable = new PokemonSpecieTable().selectId().selectPokemonSpeciesNames(TranslationTableField.forPokemonSpecie())
                 .selectPokemon(pokemonTable);
@@ -40,7 +40,7 @@ public class PokemonSpecieListLoader extends AbstractAsyncTaskLoader<List<Pokemo
         long start = System.nanoTime();
         List<PokemonSpecie> query = dataQueryHelper.query(specieTable);
         long stop = System.nanoTime();
-        Log.d("PKMN", "Duration for loading pkmnSpecies = " + (stop - start));
+        Log.d("PKMN", "Duration for loading species in no reflection = " + (stop - start));
         return query;
     }
 }
