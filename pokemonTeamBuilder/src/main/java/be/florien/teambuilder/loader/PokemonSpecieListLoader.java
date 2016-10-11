@@ -2,6 +2,7 @@
 package be.florien.teambuilder.loader;
 
 import android.content.Context;
+import android.util.Log;
 
 import be.florien.teambuilder.database.helper.DBTableQueryHelper;
 import be.florien.teambuilder.database.table.TranslationTableField;
@@ -36,6 +37,10 @@ public class PokemonSpecieListLoader extends AbstractAsyncTaskLoader<List<Pokemo
         if (mFilter != null) {
             mFilter.setFilter(pokemonTable, specieTable, pokemonFormTable);
         }
-        return dataQueryHelper.query(specieTable);
+        long start = System.nanoTime();
+        List<PokemonSpecie> query = dataQueryHelper.query(specieTable);
+        long stop = System.nanoTime();
+        Log.d("PKMN", "Duration for loading of species == " + (stop - start));
+        return query;
     }
 }
