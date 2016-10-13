@@ -18,7 +18,9 @@ public class DBFixedHelper extends SQLiteAssetHelper {
     }
 
     public void close() {
-        mDatabase.close();
+        if (mDatabase != null) {
+            mDatabase.close();
+        }
     }
 
     public DBFixedHelper(Context context) {

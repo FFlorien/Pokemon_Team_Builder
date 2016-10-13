@@ -56,7 +56,14 @@ public class DBUserQueryHelper<T> {
         try {
             List<DBDelete> deletes = table.getDelete();
             for (DBDelete delete : deletes) {
-                mDBHelper.getDatabase().delete(delete.getTableName(), delete.getWhereClause(), (String[]) delete.getWhereArgs().toArray());
+
+                List<Integer> whereArgs = delete.getWhereArgs();
+                String[] argsArray = new String[whereArgs.size()];
+                int i = 0;
+                for (Integer integer : whereArgs) {
+                    argsArray[i++] = String.valueOf(integer);
+                }
+                mDBHelper.getDatabase().delete(delete.getTableName(), delete.getWhereClause(), argsArray);
             }
             mDBHelper.getDatabase().setTransactionSuccessful();
         } finally {

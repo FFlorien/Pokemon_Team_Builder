@@ -40,7 +40,7 @@ public class PokemonSpecieListLoader extends AbstractAsyncTaskLoader<List<Pokemo
         long start = System.nanoTime();
         List<PokemonSpecie> query = dataQueryHelper.query(specieTable);
         long stop = System.nanoTime();
-        Log.d("PKMN", "Duration for loading of species == " + (stop - start));
+        Log.d("PKMN", "Duration for loading of species with reflection == " + (stop - start));
         return query;
     }
 }

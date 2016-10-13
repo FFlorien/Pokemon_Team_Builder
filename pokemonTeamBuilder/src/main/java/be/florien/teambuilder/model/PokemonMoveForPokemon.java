@@ -14,6 +14,7 @@ public class PokemonMoveForPokemon implements Parcelable {
 
     @JoId
     public int pokemon_id;
+    @JoId
     public int move_id;
     public int pokemon_move_method_id;
     public int level;
