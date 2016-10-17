@@ -38,7 +38,7 @@ import be.florien.teambuilder.loader.AddPokemonUserLoader;
 import be.florien.teambuilder.loader.DeletePokemonUserLoader;
 import be.florien.teambuilder.loader.PokemonSpecieListLoader;
 import be.florien.teambuilder.loader.TypeListLoader;
-import be.florien.teambuilder.loader.UserPokemonSpecieCatchedListLoader;
+import be.florien.teambuilder.loader.UserPokemonSpecieCaughtListLoader;
 import be.florien.teambuilder.model.PokemonSpecie;
 import be.florien.teambuilder.model.Type;
 import be.florien.teambuilder.model.UserPokemonSpecieCaught;
@@ -350,7 +350,7 @@ public class PokemonSpecieListFragment extends ListFragment implements SpecieLis
 
         @Override
         public Loader<List<UserPokemonSpecieCaught>> onCreateLoader(int arg0, Bundle arg1) {
-            return new UserPokemonSpecieCatchedListLoader(getActivity());
+            return new UserPokemonSpecieCaughtListLoader(getActivity());
         }
 
         @Override

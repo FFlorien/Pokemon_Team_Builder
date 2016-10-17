@@ -17,7 +17,6 @@ public class DBUserHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private Context context;
-    private SQLiteDatabase mDatabase;
 
     public DBUserHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -58,21 +57,6 @@ public class DBUserHelper extends SQLiteOpenHelper {
                         + newVersion + ", which will destroy all old data");
         // TODO db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMMENTS);
         onCreate(db);
-    }
-
-    public void open() {
-        mDatabase = getWritableDatabase();
-    }
-
-    public void close() {
-        mDatabase.close();
-    }
-
-    public SQLiteDatabase getDatabase() {
-        if (mDatabase == null || !mDatabase.isOpen()) {
-            open();
-        }
-        return mDatabase;
     }
 
 }

@@ -3,9 +3,9 @@ package be.florien.teambuilder.loader;
 
 import android.content.Context;
 
-import be.florien.teambuilder.database.helper.DBTableQueryHelper;
+import be.florien.teambuilder.database.helper.DBPokedexHelper;
+import be.florien.joinorm.queryhandling.JOQueryHelper;
 import be.florien.teambuilder.database.table.TranslationTableField;
-import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.fragment.MoveListFilterDialogFragment.MoveFilter;
 import be.florien.teambuilder.model.Move;
 import be.florien.teambuilder.model.table.ItemTable;
@@ -30,7 +30,7 @@ public class MoveListLoader extends AbstractAsyncTaskLoader<List<Move>> {
     @Override
     public List<Move> loadInBackground() {
 
-        DBTableQueryHelper<Move> dataSource = new DBTableQueryHelper<>(getContext());
+        JOQueryHelper dataSource = new JOQueryHelper(new DBPokedexHelper(getContext()));
         TypeTable typeTable = new TypeTable().selectId().selectTypeNames(TranslationTableField.forType());
         MoveMetaTable metaTable = new MoveMetaTable().selectMetaAilmentId();
         MoveTable table =
@@ -43,7 +43,7 @@ public class MoveListLoader extends AbstractAsyncTaskLoader<List<Move>> {
         if (mFilter != null) {
             mFilter.setFilter(typeTable, metaTable, table);
         }
-        List<Move> list = dataSource.query(table);
+        List<Move> list = dataSource.queryList(table);
         Collections.sort(list);
         return list;
     }

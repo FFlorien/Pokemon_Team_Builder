@@ -6,7 +6,8 @@ import android.content.Context;
 import java.util.List;
 
 import be.florien.joinorm.architecture.WhereStatement;
-import be.florien.teambuilder.database.helper.DBTableQueryHelper;
+import be.florien.teambuilder.database.helper.DBPokedexHelper;
+import be.florien.joinorm.queryhandling.JOQueryHelper;
 import be.florien.teambuilder.database.table.TranslationTableField;
 import be.florien.teambuilder.fragment.MoveListFilterDialogFragment.MoveFilter;
 import be.florien.teambuilder.model.PokemonMoveForPokemon;
@@ -33,7 +34,7 @@ public class PokemonMoveForPokemonListLoader extends AbstractAsyncTaskLoader<Lis
     @Override
     public List<PokemonMoveForPokemon> loadInBackground() {
 
-        DBTableQueryHelper<PokemonMoveForPokemon> dataSource = new DBTableQueryHelper<>(getContext());
+        JOQueryHelper dataSource = new JOQueryHelper(new DBPokedexHelper(getContext()));
         TypeTable typeTable = new TypeTable().selectId().selectTypeNames(TranslationTableField.forType());
         MoveMetaTable metaTable = new MoveMetaTable().selectMoveMetaAilments(new MoveMetaAilmentTable().selectId());
         MoveTable moveTable = new MoveTable().selectMoveNames(TranslationTableField.forMove()).selectPower().selectPp()
@@ -48,7 +49,7 @@ public class PokemonMoveForPokemonListLoader extends AbstractAsyncTaskLoader<Lis
             mFilter.setFilter(typeTable, metaTable, moveTable);
         }
         table.addWhere(new WhereStatement(PokemonMoveForPokemonTable.COLUMN_POKEMON_ID, mId));
-        return dataSource.query(table);
+        return dataSource.queryList(table);
     }
 
 }

@@ -4,7 +4,8 @@ package be.florien.teambuilder.loader;
 import android.content.Context;
 
 import be.florien.joinorm.architecture.WhereStatement;
-import be.florien.teambuilder.database.helper.DBTableQueryHelper;
+import be.florien.teambuilder.database.helper.DBPokedexHelper;
+import be.florien.joinorm.queryhandling.JOQueryHelper;
 import be.florien.teambuilder.database.table.TranslationTableField;
 import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.fragment.PokemonSpecieListFilterDialogFragment.SpecieFilter;
@@ -30,7 +31,7 @@ public class PokemonSpecieForMoveListLoader extends AbstractAsyncTaskLoader<List
     @Override
     public List<PokemonSpecie> loadInBackground() {
 
-        DBTableQueryHelper<PokemonSpecie> dataSource = new DBTableQueryHelper<>(getContext());
+        JOQueryHelper dataSource = new JOQueryHelper(new DBPokedexHelper(getContext()));
 
         TypeTableTmpForPokemon typeTable = new TypeTableTmpForPokemon().selectId();
         PokemonFormTable pokemonFormTable = new PokemonFormTable().selectId().selectPokemonFormNames(TranslationTableField.forPokemonForm());
@@ -45,7 +46,7 @@ public class PokemonSpecieForMoveListLoader extends AbstractAsyncTaskLoader<List
             mFilter.setFilter(pokemonTable, table, pokemonFormTable);
         }
         pokemonMoveForPokemonTable.addWhere(new WhereStatement(PokemonMoveForPokemonTable.COLUMN_MOVE_ID, mMoveId));
-        return dataSource.query(table);
+        return dataSource.queryList(table);
     }
 
 }

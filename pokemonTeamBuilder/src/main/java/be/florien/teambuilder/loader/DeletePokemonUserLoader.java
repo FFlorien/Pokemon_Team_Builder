@@ -3,12 +3,12 @@ package be.florien.teambuilder.loader;
 
 import android.content.Context;
 
-import be.florien.teambuilder.database.helper.DBUserQueryHelper;
-import be.florien.teambuilder.database.table.UserPokemonSpecieCaughtTable;
-import be.florien.teambuilder.model.UserPokemonSpecieCaught;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import be.florien.joinorm.queryhandling.JOQueryHelper;
+import be.florien.teambuilder.database.helper.DBUserHelper;
+import be.florien.teambuilder.database.table.UserPokemonSpecieCaughtTable;
 
 public class DeletePokemonUserLoader extends AbstractAsyncTaskLoader<Void> {
 
@@ -16,7 +16,7 @@ public class DeletePokemonUserLoader extends AbstractAsyncTaskLoader<Void> {
 
     public DeletePokemonUserLoader(Context context, int pkmn) {
         super(context);
-        mPokemonUser = new ArrayList<Integer>();
+        mPokemonUser = new ArrayList<>();
         mPokemonUser.add(pkmn);
     }
 
@@ -27,7 +27,7 @@ public class DeletePokemonUserLoader extends AbstractAsyncTaskLoader<Void> {
 
     @Override
     public Void loadInBackground() {
-        DBUserQueryHelper<UserPokemonSpecieCaught> dbHelper = new DBUserQueryHelper<UserPokemonSpecieCaught>(getContext());
+        JOQueryHelper dbHelper = new JOQueryHelper(new DBUserHelper(getContext()));
         UserPokemonSpecieCaughtTable table = new UserPokemonSpecieCaughtTable();
         for (int pkmn : mPokemonUser) {
             table.delete(pkmn);

@@ -6,7 +6,8 @@ import android.content.Context;
 import java.util.List;
 
 import be.florien.joinorm.architecture.WhereStatement;
-import be.florien.teambuilder.database.helper.DBTableQueryHelper;
+import be.florien.teambuilder.database.helper.DBPokedexHelper;
+import be.florien.joinorm.queryhandling.JOQueryHelper;
 import be.florien.teambuilder.database.table.TypeTableTmpForPokemon;
 import be.florien.teambuilder.model.Type;
 import be.florien.teambuilder.model.table.TypeEfficacyAsAttackTable;
@@ -37,8 +38,8 @@ public class TypeLoader extends AbstractAsyncTaskLoader<Type> {
                                         .selectTypeAttacking(new TypeTable().selectId())
                         );
         table.addWhere(new WhereStatement(TypeTableTmpForPokemon.COLUMN_TYPE_ID, String.valueOf(mId)));
-        DBTableQueryHelper<Type> queryHelper = new DBTableQueryHelper<>(getContext());
-        List<Type> list = queryHelper.query(table);
+        JOQueryHelper queryHelper = new JOQueryHelper(new DBPokedexHelper(getContext()));
+        List<Type> list = queryHelper.queryList(table);
         if (list.size() > 0) {
             return list.get(0);
         }
